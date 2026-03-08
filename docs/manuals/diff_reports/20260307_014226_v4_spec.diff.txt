@@ -1,0 +1,44 @@
+# TORASAN マニュアル差分レポート
+# 文書: spec
+# バージョン: v4
+# 生成日時: 2026-03-07 01:42:26
+# 追加: +14 行 / 削除: -2 行
+# 変更セクション: 2 箇所
+#============================================================
+
+--- フレームワーク仕様書 (前回)
++++ フレームワーク仕様書 (今回)
+@@ -3,12 +3,12 @@
+ フレームワーク仕様書
+ 文書番号文書番号文書番号 | TORASAN-SPEC-001TORASAN-SPEC-001TORASAN-SPEC-001
+ 版数版数版数 | v1.0v1.0v1.0
+-作成日作成日作成日 | 2026-03-022026-03-022026-03-02
++作成日作成日作成日 | 2026-03-072026-03-072026-03-07
+ フレームワーク版数フレームワーク版数フレームワーク版数 | v4.0v4.0v4.0
+ プロセス版数プロセス版数プロセス版数 | v3.2v3.2v3.2
+ 改版履歴
+ 版数版数版数 | 日付日付日付 | 変更内容変更内容変更内容 | 承認承認承認
+-v1.0v1.0v1.0 | 2026-03-022026-03-022026-03-02 | 初版作成初版作成初版作成 | TORATORATORA
++v1.0v1.0v1.0 | 2026-03-072026-03-072026-03-07 | 初版作成初版作成初版作成 | TORATORATORA
+ 目次
+ （Word の「参考資料」→「目次の更新」で自動生成してください）
+ 1. 概要
+@@ -271,6 +271,18 @@
+ cppcheck: 汎用静的解析（メモリリーク、未初期化変数等）
+ clang-tidy: LLVM ベースリンター（コードスタイル、パターン検出）
+ flawfinder: セキュリティ脆弱性スキャナ
++8.4 開発環境ツール管理
++TORASAN の GUI 管理アプリ（localhost:3000）は環境監査機能を備え、全ツールのバージョン・パス・導入状態を自動検査する。Windows 環境では cmd.exe の PATH と Git Bash の PATH が異なるため、KNOWN_TOOL_PATHS による既知パス解決メカニズムを実装している。
++ツールツールツール | カテゴリカテゴリカテゴリ | パス解決方法パス解決方法パス解決方法 | バージョンバージョンバージョン
++gitgitgit | 必須必須必須 | PATH（cmd.exe）PATH（cmd.exe）PATH（cmd.exe） | 2.53+2.53+2.53+
++pythonpythonpython | 必須必須必須 | PATH（cmd.exe）PATH（cmd.exe）PATH（cmd.exe） | 3.14+3.14+3.14+
++nodenodenode | 必須必須必須 | PATH（cmd.exe）PATH（cmd.exe）PATH（cmd.exe） | 24.x LTS24.x LTS24.x LTS
++npmnpmnpm | 必須必須必須 | PATH（cmd.exe）PATH（cmd.exe）PATH（cmd.exe） | 11.x11.x11.x
++cppcheckcppcheckcppcheck | 静的解析静的解析静的解析 | KNOWN_TOOL_PATHSKNOWN_TOOL_PATHSKNOWN_TOOL_PATHS | 2.20+2.20+2.20+
++clang-tidyclang-tidyclang-tidy | 静的解析静的解析静的解析 | KNOWN_TOOL_PATHSKNOWN_TOOL_PATHSKNOWN_TOOL_PATHS | LLVM 21+LLVM 21+LLVM 21+
++flawfinderflawfinderflawfinder | 静的解析静的解析静的解析 | KNOWN_TOOL_PATHS（venv）KNOWN_TOOL_PATHS（venv）KNOWN_TOOL_PATHS（venv） | 2.0+2.0+2.0+
++ghghgh | GitHubGitHubGitHub | KNOWN_TOOL_PATHSKNOWN_TOOL_PATHSKNOWN_TOOL_PATHS | 2.87+2.87+2.87+
++ツール追加時は error_prevention.md §E「ツール追加時の基本フロー」に従い、KNOWN_TOOL_PATHS 登録 → ビルド確認 → GUI 検証 → env_state.md 更新 → 仕様書再生成（python scripts/generate_manuals.py）を一貫して実行する。
+ 9. 継続的改善プロセス
+ 9.1 技術巡回サイクル
+ 頻度頻度頻度 | アクションアクションアクション | 担当スキル担当スキル担当スキル

@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.pyc
+
+# Node.js
+node_modules/
+package-lock.json
+
+# Build artifacts
+app/dist/
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Claude Code (session-specific)
+.claude/*
+!.claude/skills/
+!.claude/knowledge/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary
+*.tmp
+*.bak
+*.log
+
+# Generated documents (regenerable)
+docx/
+projects/*/output/*.docx
+projects/*/output/*.xlsx
+
+# Secrets
+.env
+.env.*
+*.key
+*.pem
+credentials.*

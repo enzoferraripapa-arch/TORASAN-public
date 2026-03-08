@@ -1,0 +1,69 @@
+# TORASAN マニュアル差分レポート
+# 文書: spec
+# バージョン: v11
+# 生成日時: 2026-03-07 19:29:19
+# 追加: +12 行 / 削除: -10 行
+# 変更セクション: 4 箇所
+#============================================================
+
+--- フレームワーク仕様書 (前回)
++++ フレームワーク仕様書 (今回)
+@@ -45,19 +45,18 @@
+ TORASAN は全スキルの開発・メンテナンスの拠点であり、プロジェクトテンプレートを提供する。個別プロジェクト（機能安全 PJ、Web PJ 等）は独立リポジトリとして運用する。
+ 図 2-1: リポジトリ構成
+ パスパスパス | 役割役割役割 | 管理対象管理対象管理対象
+-.claude/skills/.claude/skills/.claude/skills/ | スキル格納スキル格納スキル格納 | 汎用 15本 + ドメイン 26本 = 計 41本汎用 15本 + ドメイン 26本 = 計 41本汎用 15本 + ドメイン 26本 = 計 41本
+-.claude/knowledge/.claude/knowledge/.claude/knowledge/ | ナレッジ格納ナレッジ格納ナレッジ格納 | 汎用 7本 + ドメイン 9本 = 計 16本汎用 7本 + ドメイン 9本 = 計 16本汎用 7本 + ドメイン 9本 = 計 16本
++.claude/skills/.claude/skills/.claude/skills/ | スキル格納スキル格納スキル格納 | 汎用 14本 + ドメイン 26本 = 計 40本汎用 14本 + ドメイン 26本 = 計 40本汎用 14本 + ドメイン 26本 = 計 40本
++.claude/knowledge/.claude/knowledge/.claude/knowledge/ | ナレッジ格納ナレッジ格納ナレッジ格納 | 汎用 8本 + ドメイン 11本 = 計 19本汎用 8本 + ドメイン 11本 = 計 19本汎用 8本 + ドメイン 11本 = 計 19本
+ install.shinstall.shinstall.sh | スキル配布スキル配布スキル配布 | 汎用スキル・ナレッジを ~/.claude/ に配布汎用スキル・ナレッジを ~/.claude/ に配布汎用スキル・ナレッジを ~/.claude/ に配布
+ PROCESS.mdPROCESS.mdPROCESS.md | プロセス定義プロセス定義プロセス定義 | ISO 26262 + SPICE V モデル（15 フェーズ）ISO 26262 + SPICE V モデル（15 フェーズ）ISO 26262 + SPICE V モデル（15 フェーズ）
+ project.jsonproject.jsonproject.json | プロジェクト SoTプロジェクト SoTプロジェクト SoT | 構成・進捗・変更ログ・TBD 管理構成・進捗・変更ログ・TBD 管理構成・進捗・変更ログ・TBD 管理
+-packages/packages/packages/ | 規格別テンプレート規格別テンプレート規格別テンプレート | ISO 26262 / IEC 60730 / IEC 61508ISO 26262 / IEC 60730 / IEC 61508ISO 26262 / IEC 60730 / IEC 61508
+ docs/docs/docs/ | 成果物格納成果物格納成果物格納 | フェーズ成果物（安全計画、HARA 等）フェーズ成果物（安全計画、HARA 等）フェーズ成果物（安全計画、HARA 等）
+ process_records/process_records/process_records/ | SPICE エビデンスSPICE エビデンスSPICE エビデンス | プロセス実施記録・ゲートログプロセス実施記録・ゲートログプロセス実施記録・ゲートログ
+ 2.2 二層配布モデル
+ スキル配布は二層構造で運用する。汎用スキルは install.sh でグローバル配布し、ドメインスキルはプロジェクトレジストリ経由で選択配布する。
+ 図 2-2: 二層配布モデル
+ 層層層 | 対象対象対象 | 配布手段配布手段配布手段 | 配布先配布先配布先 | スキル数スキル数スキル数
+-Tier 1（汎用）Tier 1（汎用）Tier 1（汎用） | セッション管理、監査、環境系セッション管理、監査、環境系セッション管理、監査、環境系 | install.shinstall.shinstall.sh | ~/.claude/skills/~/.claude/skills/~/.claude/skills/ | 151515
++Tier 1（汎用）Tier 1（汎用）Tier 1（汎用） | セッション管理、監査、環境系セッション管理、監査、環境系セッション管理、監査、環境系 | install.shinstall.shinstall.sh | ~/.claude/skills/~/.claude/skills/~/.claude/skills/ | 141414
+ Tier 2（ドメイン）Tier 2（ドメイン）Tier 2（ドメイン） | 安全分析、コード生成、テスト系安全分析、コード生成、テスト系安全分析、コード生成、テスト系 | /repo-manage sync/repo-manage sync/repo-manage sync | PJ/.claude/skills/PJ/.claude/skills/PJ/.claude/skills/ | 262626
+ 2.3 メモリ・状態管理アーキテクチャ
+ 図 2-3: メモリ・状態管理アーキテクチャ
+@@ -139,6 +138,7 @@
+ 555 | git_worktree_branch_management.mdgit_worktree_branch_management.mdgit_worktree_branch_management.md | Git ワークツリー操作手順Git ワークツリー操作手順Git ワークツリー操作手順
+ 666 | cross_platform_dev.mdcross_platform_dev.mdcross_platform_dev.md | マルチプラットフォーム開発（パス変換等）マルチプラットフォーム開発（パス変換等）マルチプラットフォーム開発（パス変換等）
+ 777 | memory_paths.mdmemory_paths.mdmemory_paths.md | メモリ・状態ファイルパス構成メモリ・状態ファイルパス構成メモリ・状態ファイルパス構成
++888 | error_prevention.mderror_prevention.mderror_prevention.md | エラー防止・PDCA プロセス定義エラー防止・PDCA プロセス定義エラー防止・PDCA プロセス定義
+ 4.2 ドメインナレッジ（PJ 固有）
+ 格納先: .claude/knowledge/
+ ### | ファイル名ファイル名ファイル名 | 内容内容内容
+@@ -151,6 +151,8 @@
+ 777 | safety_case_gsn.mdsafety_case_gsn.mdsafety_case_gsn.md | GSN による安全ケース記述GSN による安全ケース記述GSN による安全ケース記述
+ 888 | safety_diagnostics.mdsafety_diagnostics.mdsafety_diagnostics.md | 診断カバレッジ・SFF 計算手法診断カバレッジ・SFF 計算手法診断カバレッジ・SFF 計算手法
+ 999 | srs_template.mdsrs_template.mdsrs_template.md | ソフトウェア要件仕様書テンプレートソフトウェア要件仕様書テンプレートソフトウェア要件仕様書テンプレート
++101010 | pptx_advanced_shapes.mdpptx_advanced_shapes.mdpptx_advanced_shapes.md | python-pptx 高度図形操作リファレンスpython-pptx 高度図形操作リファレンスpython-pptx 高度図形操作リファレンス
++111111 | uml_diagramming.mduml_diagramming.mduml_diagramming.md | UML 作図リファレンス（python-pptx 実装パターン）UML 作図リファレンス（python-pptx 実装パターン）UML 作図リファレンス（python-pptx 実装パターン）
+ 5. プロセス定義
+ 5.1 V モデルフェーズ定義
+ TORASAN は ISO 26262 に基づく 15 フェーズの V モデルを採用する。各フェーズは INPUT/OUTPUT/PROCEDURE/GATE で構成される。
+@@ -245,12 +247,12 @@
+ IEC 61508IEC 61508IEC 61508 | SIL 1〜4SIL 1〜4SIL 1〜4 | 産業用 E/E/PE産業用 E/E/PE産業用 E/E/PE | テンプレート構造のみテンプレート構造のみテンプレート構造のみ
+ IEC 62304IEC 62304IEC 62304 | ——— | 医療機器ソフトウェア医療機器ソフトウェア医療機器ソフトウェア | 未対応未対応未対応
+ EN 50128EN 50128EN 50128 | ——— | 鉄道ソフトウェア鉄道ソフトウェア鉄道ソフトウェア | 未対応未対応未対応
+-7.2 packages ディレクトリ構成
+-規格別のプロセステンプレートを格納する。プロジェクト初期化時にカテゴリに応じて適用される。
+-パッケージパッケージパッケージ | 内容内容内容 | 状態状態状態
+-packages/iso26262/asil_a〜d/packages/iso26262/asil_a〜d/packages/iso26262/asil_a〜d/ | ASIL レベル別安全メカニズムパターンASIL レベル別安全メカニズムパターンASIL レベル別安全メカニズムパターン | 構造あり構造あり構造あり
+-packages/iec60730/packages/iec60730/packages/iec60730/ | IEC 60730 Class B テンプレートIEC 60730 Class B テンプレートIEC 60730 Class B テンプレート | 構造のみ（TBD）構造のみ（TBD）構造のみ（TBD）
+-packages/iec61508/sil_1〜4/packages/iec61508/sil_1〜4/packages/iec61508/sil_1〜4/ | SIL レベル別テンプレートSIL レベル別テンプレートSIL レベル別テンプレート | 構造のみ（TBD）構造のみ（TBD）構造のみ（TBD）
++7.2 規格選択ルール
++project.json の standard セクションで規格を選択する。規格情報は standard セクションに集約し、実装コードは各PJリポの src/ に配置する。
++カテゴリカテゴリカテゴリ | product_overrideproduct_overrideproduct_override | product_override_classproduct_override_classproduct_override_class
++車載車載車載 | nullnullnull | ———
++家電家電家電 | IEC60730IEC60730IEC60730 | ClassBClassBClassB
++産業産業産業 | IEC61508IEC61508IEC61508 | SIL2SIL2SIL2
+ 7.3 安全メトリクス
+ メトリクスメトリクスメトリクス | 目標値目標値目標値 | 算出式算出式算出式
+ SPFM（単一故障メトリクス）SPFM（単一故障メトリクス）SPFM（単一故障メトリクス） | >= 90%>= 90%>= 90% | 1 - (lambda_SPF / lambda_total)1 - (lambda_SPF / lambda_total)1 - (lambda_SPF / lambda_total)

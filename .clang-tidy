@@ -1,0 +1,44 @@
+# clang-tidy configuration for TORASAN
+# Target: Embedded C (MISRA C:2012 / IEC 60730 Class B)
+#
+# Note: clang-tidy does not have native MISRA checks.
+# Using bugprone/cert/readability checks as partial coverage.
+#
+# Usage: clang-tidy --config-file=.clang-tidy src/*.c src/*.h
+
+Checks: >
+  -*,
+  bugprone-*,
+  cert-*,
+  clang-analyzer-*,
+  misc-*,
+  performance-*,
+  readability-*,
+  -readability-magic-numbers,
+  -readability-identifier-length,
+  -misc-no-recursion
+
+WarningsAsErrors: >
+  bugprone-use-after-move,
+  bugprone-integer-division,
+  bugprone-narrowing-conversions,
+  cert-err34-c,
+  cert-flp30-c
+
+CheckOptions:
+  # Variable naming: snake_case (MISRA-aligned)
+  - key: readability-identifier-naming.VariableCase
+    value: lower_case
+  - key: readability-identifier-naming.FunctionCase
+    value: lower_case
+  - key: readability-identifier-naming.MacroDefinitionCase
+    value: UPPER_CASE
+  - key: readability-identifier-naming.TypedefCase
+    value: CamelCase
+  - key: readability-identifier-naming.TypedefSuffix
+    value: '_t'
+  # Embedded constraints
+  - key: readability-function-size.LineThreshold
+    value: 75
+  - key: readability-function-cognitive-complexity.Threshold
+    value: 15

@@ -1,0 +1,52 @@
+# TORASAN マニュアル差分レポート
+# 文書: spec
+# バージョン: v5
+# 生成日時: 2026-03-07 02:12:23
+# 追加: +8 行 / 削除: -3 行
+# 変更セクション: 4 箇所
+#============================================================
+
+--- フレームワーク仕様書 (前回)
++++ フレームワーク仕様書 (今回)
+@@ -43,8 +43,9 @@
+ 2. フレームワークアーキテクチャ
+ 2.1 リポジトリ構成
+ TORASAN は全スキルの開発・メンテナンスの拠点であり、プロジェクトテンプレートを提供する。個別プロジェクト（機能安全 PJ、Web PJ 等）は独立リポジトリとして運用する。
++図 2-1: リポジトリ構成
+ パスパスパス | 役割役割役割 | 管理対象管理対象管理対象
+-.claude/skills/.claude/skills/.claude/skills/ | スキル格納スキル格納スキル格納 | 汎用 14本 + ドメイン 27本 = 計 41本汎用 14本 + ドメイン 27本 = 計 41本汎用 14本 + ドメイン 27本 = 計 41本
++.claude/skills/.claude/skills/.claude/skills/ | スキル格納スキル格納スキル格納 | 汎用 15本 + ドメイン 26本 = 計 41本汎用 15本 + ドメイン 26本 = 計 41本汎用 15本 + ドメイン 26本 = 計 41本
+ .claude/knowledge/.claude/knowledge/.claude/knowledge/ | ナレッジ格納ナレッジ格納ナレッジ格納 | 汎用 7本 + ドメイン 9本 = 計 16本汎用 7本 + ドメイン 9本 = 計 16本汎用 7本 + ドメイン 9本 = 計 16本
+ install.shinstall.shinstall.sh | スキル配布スキル配布スキル配布 | 汎用スキル・ナレッジを ~/.claude/ に配布汎用スキル・ナレッジを ~/.claude/ に配布汎用スキル・ナレッジを ~/.claude/ に配布
+ PROCESS.mdPROCESS.mdPROCESS.md | プロセス定義プロセス定義プロセス定義 | ISO 26262 + SPICE V モデル（15 フェーズ）ISO 26262 + SPICE V モデル（15 フェーズ）ISO 26262 + SPICE V モデル（15 フェーズ）
+@@ -54,10 +55,12 @@
+ process_records/process_records/process_records/ | SPICE エビデンスSPICE エビデンスSPICE エビデンス | プロセス実施記録・ゲートログプロセス実施記録・ゲートログプロセス実施記録・ゲートログ
+ 2.2 二層配布モデル
+ スキル配布は二層構造で運用する。汎用スキルは install.sh でグローバル配布し、ドメインスキルはプロジェクトレジストリ経由で選択配布する。
++図 2-2: 二層配布モデル
+ 層層層 | 対象対象対象 | 配布手段配布手段配布手段 | 配布先配布先配布先 | スキル数スキル数スキル数
+-Tier 1（汎用）Tier 1（汎用）Tier 1（汎用） | セッション管理、監査、環境系セッション管理、監査、環境系セッション管理、監査、環境系 | install.shinstall.shinstall.sh | ~/.claude/skills/~/.claude/skills/~/.claude/skills/ | 141414
+-Tier 2（ドメイン）Tier 2（ドメイン）Tier 2（ドメイン） | 安全分析、コード生成、テスト系安全分析、コード生成、テスト系安全分析、コード生成、テスト系 | /repo-manage sync/repo-manage sync/repo-manage sync | PJ/.claude/skills/PJ/.claude/skills/PJ/.claude/skills/ | 272727
++Tier 1（汎用）Tier 1（汎用）Tier 1（汎用） | セッション管理、監査、環境系セッション管理、監査、環境系セッション管理、監査、環境系 | install.shinstall.shinstall.sh | ~/.claude/skills/~/.claude/skills/~/.claude/skills/ | 151515
++Tier 2（ドメイン）Tier 2（ドメイン）Tier 2（ドメイン） | 安全分析、コード生成、テスト系安全分析、コード生成、テスト系安全分析、コード生成、テスト系 | /repo-manage sync/repo-manage sync/repo-manage sync | PJ/.claude/skills/PJ/.claude/skills/PJ/.claude/skills/ | 262626
+ 2.3 メモリ・状態管理アーキテクチャ
++図 2-3: メモリ・状態管理アーキテクチャ
+ ストレージストレージストレージ | パスパスパス | スコープスコープスコープ | ライフタイムライフタイムライフタイム
+ Auto MemoryAuto MemoryAuto Memory | ~/.claude/projects/{slug}/memory/MEMORY.md~/.claude/projects/{slug}/memory/MEMORY.md~/.claude/projects/{slug}/memory/MEMORY.md | セッションセッションセッション | 自動ロード（200 行上限）自動ロード（200 行上限）自動ロード（200 行上限）
+ Session StateSession StateSession State | ~/.claude/projects/{slug}/memory/session_state.md~/.claude/projects/{slug}/memory/session_state.md~/.claude/projects/{slug}/memory/session_state.md | 引継ぎ引継ぎ引継ぎ | /session end で上書き/session end で上書き/session end で上書き
+@@ -151,6 +154,7 @@
+ 5. プロセス定義
+ 5.1 V モデルフェーズ定義
+ TORASAN は ISO 26262 に基づく 15 フェーズの V モデルを採用する。各フェーズは INPUT/OUTPUT/PROCEDURE/GATE で構成される。
++図 5-1: V モデル 15 フェーズ構成
+ IDIDID | フェーズ名フェーズ名フェーズ名 | SPICE プロセスSPICE プロセスSPICE プロセス | 成果物成果物成果物
+ PH-01PH-01PH-01 | プロジェクト計画・安全計画プロジェクト計画・安全計画プロジェクト計画・安全計画 | MAN.3MAN.3MAN.3 | 安全計画書安全計画書安全計画書
+ PH-02PH-02PH-02 | アイテム定義アイテム定義アイテム定義 | SYS.1SYS.1SYS.1 | アイテム定義書アイテム定義書アイテム定義書
+@@ -273,6 +277,7 @@
+ flawfinder: セキュリティ脆弱性スキャナ
+ 8.4 開発環境ツール管理
+ TORASAN の GUI 管理アプリ（localhost:3000）は環境監査機能を備え、全ツールのバージョン・パス・導入状態を自動検査する。Windows 環境では cmd.exe の PATH と Git Bash の PATH が異なるため、KNOWN_TOOL_PATHS による既知パス解決メカニズムを実装している。
++図 8-1: ツールパス解決フロー
+ ツールツールツール | カテゴリカテゴリカテゴリ | パス解決方法パス解決方法パス解決方法 | バージョンバージョンバージョン
+ gitgitgit | 必須必須必須 | PATH（cmd.exe）PATH（cmd.exe）PATH（cmd.exe） | 2.53+2.53+2.53+
+ pythonpythonpython | 必須必須必須 | PATH（cmd.exe）PATH（cmd.exe）PATH（cmd.exe） | 3.14+3.14+3.14+

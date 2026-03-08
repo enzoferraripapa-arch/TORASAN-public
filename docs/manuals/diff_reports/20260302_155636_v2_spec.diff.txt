@@ -1,0 +1,56 @@
+# TORASAN マニュアル差分レポート
+# 文書: spec
+# バージョン: v2
+# 生成日時: 2026-03-02 15:56:36
+# 追加: +39 行 / 削除: -0 行
+# 変更セクション: 1 箇所
+#============================================================
+
+--- フレームワーク仕様書 (前回)
++++ フレームワーク仕様書 (今回)
+@@ -287,6 +287,45 @@
+ 5. 改善すべき点（対策・状態「済/未」付き）
+ 6. 教訓
+ 7. 前回反省会フォローアップ
++10. マニュアル管理システム
++10.1 概要
++TORASAN フレームワークの仕様書・操作手順書は Python スクリプトによるコード生成方式で管理する。フレームワークの変更に追従して文書を再生成し、差分を自動検出・記録する仕組みを備える。
++10.2 構成ファイル
++ファイルファイルファイル | パスパスパス | 役割役割役割
++統合生成スクリプト統合生成スクリプト統合生成スクリプト | scripts/generate_manuals.pyscripts/generate_manuals.pyscripts/generate_manuals.py | 再生成 + 差分管理のエントリポイント再生成 + 差分管理のエントリポイント再生成 + 差分管理のエントリポイント
++仕様書生成仕様書生成仕様書生成 | scripts/generate_spec_doc.pyscripts/generate_spec_doc.pyscripts/generate_spec_doc.py | 仕様書の内容定義仕様書の内容定義仕様書の内容定義
++操作手順書生成操作手順書生成操作手順書生成 | scripts/generate_ops_manual.pyscripts/generate_ops_manual.pyscripts/generate_ops_manual.py | 操作手順書の内容定義操作手順書の内容定義操作手順書の内容定義
++共通ユーティリティ共通ユーティリティ共通ユーティリティ | scripts/docx_utils.pyscripts/docx_utils.pyscripts/docx_utils.py | テーブル・スタイル等の共通関数テーブル・スタイル等の共通関数テーブル・スタイル等の共通関数
++マニフェストマニフェストマニフェスト | docs/manuals/.manuals_manifest.jsondocs/manuals/.manuals_manifest.jsondocs/manuals/.manuals_manifest.json | バージョン・ハッシュ・履歴バージョン・ハッシュ・履歴バージョン・ハッシュ・履歴
++差分レポート差分レポート差分レポート | docs/manuals/diff_reports/docs/manuals/diff_reports/docs/manuals/diff_reports/ | 再生成ごとの差分記録再生成ごとの差分記録再生成ごとの差分記録
++10.3 マニフェスト構造
++.manuals_manifest.json は文書のバージョン管理・変更履歴を一元管理する。
++フィールドフィールドフィールド | 型型型 | 説明説明説明
++versionversionversion | integerintegerinteger | 全体バージョン番号（最大値）全体バージョン番号（最大値）全体バージョン番号（最大値）
++last_updatedlast_updatedlast_updated | stringstringstring | 最終更新日時最終更新日時最終更新日時
++documents.{key}.versiondocuments.{key}.versiondocuments.{key}.version | integerintegerinteger | 文書別バージョン番号文書別バージョン番号文書別バージョン番号
++documents.{key}.hashdocuments.{key}.hashdocuments.{key}.hash | stringstringstring | SHA-256 ハッシュSHA-256 ハッシュSHA-256 ハッシュ
++documents.{key}.generated_atdocuments.{key}.generated_atdocuments.{key}.generated_at | stringstringstring | 生成日時生成日時生成日時
++documents.{key}.filedocuments.{key}.filedocuments.{key}.file | stringstringstring | 出力ファイル名出力ファイル名出力ファイル名
++history[].versionhistory[].versionhistory[].version | integerintegerinteger | 履歴バージョン履歴バージョン履歴バージョン
++history[].changes.addedhistory[].changes.addedhistory[].changes.added | integerintegerinteger | 追加行数追加行数追加行数
++history[].changes.removedhistory[].changes.removedhistory[].changes.removed | integerintegerinteger | 削除行数削除行数削除行数
++history[].changes.sectionshistory[].changes.sectionshistory[].changes.sections | integerintegerinteger | 変更セクション数変更セクション数変更セクション数
++history[].diff_reporthistory[].diff_reporthistory[].diff_report | stringstringstring | 差分レポートファイルパス差分レポートファイルパス差分レポートファイルパス
++10.4 差分検出メカニズム
++再生成時の差分検出は以下の手順で実行される:
++1. 既存 docx からプレーンテキストを抽出（段落 + テーブルセル）
++2. コンテンツ生成スクリプトを実行して新 docx を生成
++3. 新 docx からプレーンテキストを抽出
++4. unified diff アルゴリズムで差分を計算
++5. 差分レポートを docs/manuals/diff_reports/ に保存
++6. マニフェストにバージョン番号・ハッシュ・差分統計を記録
++10.5 更新トリガーと運用フロー
++トリガートリガートリガー | 実行タイミング実行タイミング実行タイミング | 操作操作操作
++スキル追加・変更スキル追加・変更スキル追加・変更 | スキル定義変更後スキル定義変更後スキル定義変更後 | python scripts/generate_manuals.pypython scripts/generate_manuals.pypython scripts/generate_manuals.py
++プロセス定義変更プロセス定義変更プロセス定義変更 | PROCESS.md 更新後PROCESS.md 更新後PROCESS.md 更新後 | python scripts/generate_manuals.pypython scripts/generate_manuals.pypython scripts/generate_manuals.py
++フレームワーク構成変更フレームワーク構成変更フレームワーク構成変更 | CLAUDE.md / project.json 変更後CLAUDE.md / project.json 変更後CLAUDE.md / project.json 変更後 | python scripts/generate_manuals.pypython scripts/generate_manuals.pypython scripts/generate_manuals.py
++セッション終了時セッション終了時セッション終了時 | /session end フロー内/session end フロー内/session end フロー内 | 自動提案（任意実行）自動提案（任意実行）自動提案（任意実行）
+ 付録A: 変更管理エントリ構造
+ フィールドフィールドフィールド | 型型型 | 説明説明説明
+ ididid | stringstringstring | 変更ID（CHG-NNN）変更ID（CHG-NNN）変更ID（CHG-NNN）

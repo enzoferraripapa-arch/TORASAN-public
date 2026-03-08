@@ -1,0 +1,974 @@
+{
+  "sections": {
+    "SYS-01": {
+      "doc": "SYS",
+      "sec": "1",
+      "title": "はじめに（目的・対象読者・用語）"
+    },
+    "SYS-02": {
+      "doc": "SYS",
+      "sec": "2",
+      "title": "プロジェクトコンセプト（課題・ソリューション・役割分担・設計原則）"
+    },
+    "SYS-03": {
+      "doc": "SYS",
+      "sec": "3",
+      "title": "システムアーキテクチャ（3層構成・コンポーネント図）"
+    },
+    "SYS-04": {
+      "doc": "SYS",
+      "sec": "4",
+      "title": "CLAUDE.md の仕様（役割・ルーティング・起動シーケンス）"
+    },
+    "SYS-05": {
+      "doc": "SYS",
+      "sec": "5",
+      "title": "PROCESS.md と INGEST.md の関係性（連携パターン・データマージ・モード）"
+    },
+    "SYS-06": {
+      "doc": "SYS",
+      "sec": "6",
+      "title": "文書体系（L0〜L4階層構造）"
+    },
+    "SYS-07": {
+      "doc": "SYS",
+      "sec": "7",
+      "title": "品質・安全保証（TCL3・タグ運用・トレーサビリティ）"
+    },
+    "SYS-08": {
+      "doc": "SYS",
+      "sec": "8",
+      "title": "運用ガイドライン（新規・既存・認証モード移行）"
+    },
+    "SYS-09": {
+      "doc": "SYS",
+      "sec": "9",
+      "title": "適用範囲と制約"
+    },
+    "PR-01": {
+      "doc": "PR",
+      "sec": "1",
+      "title": "概要（目的・設計思想・適用範囲・参照文書）"
+    },
+    "PR-02": {
+      "doc": "PR",
+      "sec": "2",
+      "title": "運用モード（探索モード・認証モード）"
+    },
+    "PR-03": {
+      "doc": "PR",
+      "sec": "3",
+      "title": "Vモデル フェーズ構成（PH-01〜PH-15）"
+    },
+    "PR-04": {
+      "doc": "PR",
+      "sec": "4",
+      "title": "要件トレーサビリティ管理（ID体系・トレースチェーン）"
+    },
+    "PR-05": {
+      "doc": "PR",
+      "sec": "5",
+      "title": "変更管理"
+    },
+    "PR-06": {
+      "doc": "PR",
+      "sec": "6",
+      "title": "レビュープロセス（独立性マトリクス）"
+    },
+    "PR-07": {
+      "doc": "PR",
+      "sec": "7",
+      "title": "ツール適格性確認（TCL分類）"
+    },
+    "PR-08": {
+      "doc": "PR",
+      "sec": "8",
+      "title": "FMEA / FTA（故障解析）"
+    },
+    "PR-09": {
+      "doc": "PR",
+      "sec": "9",
+      "title": "規格別フェーズマトリクス"
+    },
+    "PR-10": {
+      "doc": "PR",
+      "sec": "10",
+      "title": "フォルダ構成"
+    },
+    "PR-11": {
+      "doc": "PR",
+      "sec": "11",
+      "title": "注意事項・免責"
+    },
+    "IN-01": {
+      "doc": "IN",
+      "sec": "1",
+      "title": "概要（目的・設計思想・使い方）"
+    },
+    "IN-02": {
+      "doc": "IN",
+      "sec": "2",
+      "title": "フォルダ構成"
+    },
+    "IN-03": {
+      "doc": "IN",
+      "sec": "3",
+      "title": "起動時の動作（STEP 0〜2）"
+    },
+    "IN-04": {
+      "doc": "IN",
+      "sec": "4",
+      "title": "STEP 1：スキャン・目録作成"
+    },
+    "IN-05": {
+      "doc": "IN",
+      "sec": "5",
+      "title": "STEP 2：分類・評価"
+    },
+    "IN-06": {
+      "doc": "IN",
+      "sec": "6",
+      "title": "STEP 3：機能要素への再分類"
+    },
+    "IN-07": {
+      "doc": "IN",
+      "sec": "7",
+      "title": "STEP 4：ギャップ分析"
+    },
+    "IN-08": {
+      "doc": "IN",
+      "sec": "8",
+      "title": "STEP 5：再文書化・資産変換"
+    },
+    "IN-09": {
+      "doc": "IN",
+      "sec": "9",
+      "title": "STEP 6：整理完了サマリー"
+    },
+    "IN-10": {
+      "doc": "IN",
+      "sec": "10",
+      "title": "特殊ケースの取り扱い"
+    },
+    "IN-11": {
+      "doc": "IN",
+      "sec": "11",
+      "title": "PROCESS.md との連携"
+    },
+    "IN-12": {
+      "doc": "IN",
+      "sec": "12",
+      "title": "注意事項"
+    }
+  },
+  "relationships": [
+    [
+      "SYS-01",
+      "PR-01",
+      "上位定義",
+      "文書の位置づけ・目的を上位で定義"
+    ],
+    [
+      "SYS-02",
+      "PR-01",
+      "上位定義",
+      "設計思想の根拠をコンセプトで定義"
+    ],
+    [
+      "SYS-03",
+      "PR-10",
+      "上位定義",
+      "3層アーキテクチャがフォルダ構成の根拠"
+    ],
+    [
+      "SYS-04",
+      "PR-01",
+      "上位定義",
+      "CLAUDE.mdルーティングからPROCESSを参照"
+    ],
+    [
+      "SYS-05",
+      "PR-02",
+      "上位定義",
+      "連携パターンが運用モードの基盤"
+    ],
+    [
+      "SYS-05",
+      "PR-03",
+      "上位定義",
+      "Vモデルフェーズとの連携パターンを定義"
+    ],
+    [
+      "SYS-06",
+      "PR-01",
+      "上位定義",
+      "文書階層でPROCESS仕様書を位置づけ"
+    ],
+    [
+      "SYS-07",
+      "PR-04",
+      "上位定義",
+      "品質保証方針がトレーサビリティの根拠"
+    ],
+    [
+      "SYS-07",
+      "PR-06",
+      "上位定義",
+      "品質保証方針がレビュープロセスの根拠"
+    ],
+    [
+      "SYS-07",
+      "PR-07",
+      "上位定義",
+      "品質保証方針がツール適格性確認の根拠"
+    ],
+    [
+      "SYS-07",
+      "PR-08",
+      "上位定義",
+      "品質保証方針がFMEA/FTAの根拠"
+    ],
+    [
+      "SYS-08",
+      "PR-02",
+      "上位定義",
+      "運用ガイドラインが運用モードの実装"
+    ],
+    [
+      "SYS-09",
+      "PR-01",
+      "上位定義",
+      "適用範囲がPROCESSの適用範囲を包含"
+    ],
+    [
+      "SYS-01",
+      "IN-01",
+      "上位定義",
+      "文書の位置づけ・目的を上位で定義"
+    ],
+    [
+      "SYS-02",
+      "IN-01",
+      "上位定義",
+      "設計思想の根拠をコンセプトで定義"
+    ],
+    [
+      "SYS-03",
+      "IN-02",
+      "上位定義",
+      "3層アーキテクチャがフォルダ構成の根拠"
+    ],
+    [
+      "SYS-04",
+      "IN-03",
+      "上位定義",
+      "CLAUDE.mdルーティングからINGESTを起動"
+    ],
+    [
+      "SYS-05",
+      "IN-07",
+      "上位定義",
+      "連携パターンがギャップ分析の基盤"
+    ],
+    [
+      "SYS-05",
+      "IN-11",
+      "上位定義",
+      "連携パターンがPROCESS連携の根拠"
+    ],
+    [
+      "SYS-06",
+      "IN-01",
+      "上位定義",
+      "文書階層でINGEST仕様書を位置づけ"
+    ],
+    [
+      "SYS-07",
+      "IN-08",
+      "上位定義",
+      "タグ運用方針が再文書化のルール根拠"
+    ],
+    [
+      "SYS-08",
+      "IN-11",
+      "上位定義",
+      "運用ガイドラインが連携手順の根拠"
+    ],
+    [
+      "SYS-09",
+      "IN-01",
+      "上位定義",
+      "適用範囲がINGESTの適用範囲を包含"
+    ],
+    [
+      "PR-03",
+      "IN-05",
+      "参照",
+      "Vモデルフェーズ候補をINGEST分類で使用"
+    ],
+    [
+      "PR-03",
+      "IN-07",
+      "参照",
+      "Vモデルフェーズとのギャップ分析で照合"
+    ],
+    [
+      "PR-03",
+      "IN-08",
+      "参照",
+      "Vモデルフォーマットで再文書化"
+    ],
+    [
+      "PR-04",
+      "IN-08",
+      "参照",
+      "要件ID体系でINGEST再文書化のID補完"
+    ],
+    [
+      "PR-10",
+      "IN-02",
+      "参照",
+      "出力先フォルダ構成をINGESTと共有"
+    ],
+    [
+      "PR-02",
+      "IN-11",
+      "参照",
+      "認証モード移行条件をINGEST連携で参照"
+    ],
+    [
+      "PR-11",
+      "SYS-07",
+      "実装",
+      "TCL3・免責がシステム品質方針の実装"
+    ],
+    [
+      "IN-12",
+      "SYS-07",
+      "実装",
+      "注意事項がシステム品質方針の実装"
+    ],
+    [
+      "IN-04",
+      "IN-05",
+      "後続",
+      "STEP1(スキャン)→STEP2(分類)の順序"
+    ],
+    [
+      "IN-05",
+      "IN-06",
+      "後続",
+      "STEP2(分類)→STEP3(再分類)の順序"
+    ],
+    [
+      "IN-06",
+      "IN-07",
+      "後続",
+      "STEP3(再分類)→STEP4(ギャップ)の順序"
+    ],
+    [
+      "IN-07",
+      "IN-08",
+      "後続",
+      "STEP4(ギャップ)→STEP5(再文書化)の順序"
+    ],
+    [
+      "IN-08",
+      "IN-09",
+      "後続",
+      "STEP5(再文書化)→STEP6(サマリー)の順序"
+    ]
+  ],
+  "mdSources": {
+    "MD-CL-01": {
+      "file": "CLAUDE.md",
+      "heading": "必ず最初に実行すること",
+      "lines": "L6-L10",
+      "traceTo": [
+        "SYS-04"
+      ]
+    },
+    "MD-CL-02": {
+      "file": "CLAUDE.md",
+      "heading": "指示別の動作",
+      "lines": "L14-L23",
+      "traceTo": [
+        "SYS-04",
+        "SYS-05"
+      ]
+    },
+    "MD-CL-03": {
+      "file": "CLAUDE.md",
+      "heading": "プロジェクト管理ファイル",
+      "lines": "L27-L34",
+      "traceTo": [
+        "SYS-06"
+      ]
+    },
+    "MD-PR-01": {
+      "file": "PROCESS.md",
+      "heading": "このファイルについて / 設計思想",
+      "lines": "L1-L21",
+      "traceTo": [
+        "PR-01"
+      ]
+    },
+    "MD-PR-02": {
+      "file": "PROCESS.md",
+      "heading": "参照ファイル一覧",
+      "lines": "L24-L35",
+      "traceTo": [
+        "PR-01"
+      ]
+    },
+    "MD-PR-03": {
+      "file": "PROCESS.md",
+      "heading": "運用モード",
+      "lines": "L38-L63",
+      "traceTo": [
+        "PR-02"
+      ]
+    },
+    "MD-PR-04": {
+      "file": "PROCESS.md",
+      "heading": "作業トレース",
+      "lines": "L67-L121",
+      "traceTo": [
+        "PR-04"
+      ]
+    },
+    "MD-PR-05": {
+      "file": "PROCESS.md",
+      "heading": "進捗ダッシュボード",
+      "lines": "L124-L162",
+      "traceTo": [
+        "PR-04"
+      ]
+    },
+    "MD-PR-06": {
+      "file": "PROCESS.md",
+      "heading": "起動時の動作 (STEP 1-5)",
+      "lines": "L166-L251",
+      "traceTo": [
+        "PR-01",
+        "PR-03"
+      ]
+    },
+    "MD-PR-07": {
+      "file": "PROCESS.md",
+      "heading": "要件トレーサビリティ管理",
+      "lines": "L254-L309",
+      "traceTo": [
+        "PR-04"
+      ]
+    },
+    "MD-PR-08": {
+      "file": "PROCESS.md",
+      "heading": "変更管理",
+      "lines": "L312-L350",
+      "traceTo": [
+        "PR-05"
+      ]
+    },
+    "MD-PR-09": {
+      "file": "PROCESS.md",
+      "heading": "レビュープロセス",
+      "lines": "L353-L410",
+      "traceTo": [
+        "PR-06"
+      ]
+    },
+    "MD-PR-10": {
+      "file": "PROCESS.md",
+      "heading": "ツール適格性確認",
+      "lines": "L413-L434",
+      "traceTo": [
+        "PR-07"
+      ]
+    },
+    "MD-PR-11": {
+      "file": "PROCESS.md",
+      "heading": "FMEA / FTA",
+      "lines": "L438-L467",
+      "traceTo": [
+        "PR-08"
+      ]
+    },
+    "MD-PR-12": {
+      "file": "PROCESS.md",
+      "heading": "コーディングガイドライン管理",
+      "lines": "L470-L496",
+      "traceTo": [
+        "PR-01"
+      ]
+    },
+    "MD-PR-13": {
+      "file": "PROCESS.md",
+      "heading": "外部ライブラリ管理",
+      "lines": "L499-L513",
+      "traceTo": [
+        "PR-01"
+      ]
+    },
+    "MD-PR-14": {
+      "file": "PROCESS.md",
+      "heading": "Vモデルフェーズ構成とAI担当範囲",
+      "lines": "L516-L536",
+      "traceTo": [
+        "PR-03"
+      ]
+    },
+    "MD-PR-15": {
+      "file": "PROCESS.md",
+      "heading": "規格別フェーズマトリクス",
+      "lines": "L540-L563",
+      "traceTo": [
+        "PR-09"
+      ]
+    },
+    "MD-PR-16": {
+      "file": "PROCESS.md",
+      "heading": "各フェーズ詳細 (PH-01〜PH-15)",
+      "lines": "L566-L848",
+      "traceTo": [
+        "PR-03"
+      ]
+    },
+    "MD-PR-17": {
+      "file": "PROCESS.md",
+      "heading": "前提変更の取り扱い",
+      "lines": "L852-L866",
+      "traceTo": [
+        "PR-05"
+      ]
+    },
+    "MD-PR-18": {
+      "file": "PROCESS.md",
+      "heading": "フォルダ構成",
+      "lines": "L868-L905",
+      "traceTo": [
+        "PR-10"
+      ]
+    },
+    "MD-PR-19": {
+      "file": "PROCESS.md",
+      "heading": "共通実行ルール",
+      "lines": "L950-L964",
+      "traceTo": [
+        "PR-01"
+      ]
+    },
+    "MD-PR-20": {
+      "file": "PROCESS.md",
+      "heading": "注意事項・免責",
+      "lines": "L968-L974",
+      "traceTo": [
+        "PR-11"
+      ]
+    },
+    "MD-IN-01": {
+      "file": "INGEST.md",
+      "heading": "このファイルについて / 設計思想",
+      "lines": "L1-L26",
+      "traceTo": [
+        "IN-01"
+      ]
+    },
+    "MD-IN-02": {
+      "file": "INGEST.md",
+      "heading": "フォルダ構成（INGEST用）",
+      "lines": "L29-L49",
+      "traceTo": [
+        "IN-02"
+      ]
+    },
+    "MD-IN-03": {
+      "file": "INGEST.md",
+      "heading": "起動時の動作 (STEP 0-2)",
+      "lines": "L52-L93",
+      "traceTo": [
+        "IN-03"
+      ]
+    },
+    "MD-IN-04": {
+      "file": "INGEST.md",
+      "heading": "STEP 1：スキャン・目録作成",
+      "lines": "L96-L151",
+      "traceTo": [
+        "IN-04"
+      ]
+    },
+    "MD-IN-05": {
+      "file": "INGEST.md",
+      "heading": "STEP 2：分類・評価",
+      "lines": "L154-L223",
+      "traceTo": [
+        "IN-05"
+      ]
+    },
+    "MD-IN-06": {
+      "file": "INGEST.md",
+      "heading": "STEP 3：機能要素への再分類",
+      "lines": "L226-L274",
+      "traceTo": [
+        "IN-06"
+      ]
+    },
+    "MD-IN-07": {
+      "file": "INGEST.md",
+      "heading": "STEP 4：ギャップ分析",
+      "lines": "L277-L326",
+      "traceTo": [
+        "IN-07"
+      ]
+    },
+    "MD-IN-08": {
+      "file": "INGEST.md",
+      "heading": "STEP 5：再文書化・資産変換",
+      "lines": "L329-L387",
+      "traceTo": [
+        "IN-08"
+      ]
+    },
+    "MD-IN-09": {
+      "file": "INGEST.md",
+      "heading": "STEP 6：整理完了サマリー",
+      "lines": "L390-L429",
+      "traceTo": [
+        "IN-09"
+      ]
+    },
+    "MD-IN-10": {
+      "file": "INGEST.md",
+      "heading": "特殊ケースの取り扱い",
+      "lines": "L433-L479",
+      "traceTo": [
+        "IN-10"
+      ]
+    },
+    "MD-IN-11": {
+      "file": "INGEST.md",
+      "heading": "INGEST完了後のCLAUDE.mdとの連携",
+      "lines": "L514-L540",
+      "traceTo": [
+        "IN-11"
+      ]
+    },
+    "MD-IN-12": {
+      "file": "INGEST.md",
+      "heading": "注意事項",
+      "lines": "L544-L550",
+      "traceTo": [
+        "IN-12"
+      ]
+    },
+    "MD-SYS-01": {
+      "file": "PROCESS.md / INGEST.md / CLAUDE.md",
+      "heading": "各MDファイルの概要・設計思想",
+      "lines": "PR:L1-L21, IN:L1-L26, CL:全体",
+      "traceTo": [
+        "SYS-01"
+      ]
+    },
+    "MD-SYS-02": {
+      "file": "PROCESS.md / INGEST.md",
+      "heading": "設計思想セクション",
+      "lines": "PR:L13-L21, IN:L19-L26",
+      "traceTo": [
+        "SYS-02"
+      ]
+    },
+    "MD-SYS-03": {
+      "file": "PROCESS.md / INGEST.md",
+      "heading": "フォルダ構成セクション",
+      "lines": "PR:L868-L905, IN:L29-L49",
+      "traceTo": [
+        "SYS-03"
+      ]
+    },
+    "MD-SYS-07": {
+      "file": "PROCESS.md",
+      "heading": "ツール適格性・レビュー・トレーサビリティ",
+      "lines": "PR:L413-L434, L353-L410, L254-L309",
+      "traceTo": [
+        "SYS-07"
+      ]
+    },
+    "MD-SYS-08": {
+      "file": "PROCESS.md / INGEST.md",
+      "heading": "運用モード・起動動作・連携",
+      "lines": "PR:L38-L63, L166-L251, IN:L514-L540",
+      "traceTo": [
+        "SYS-08"
+      ]
+    },
+    "MD-SYS-09": {
+      "file": "PROCESS.md / INGEST.md",
+      "heading": "注意事項・免責",
+      "lines": "PR:L968-L974, IN:L544-L550",
+      "traceTo": [
+        "SYS-09"
+      ]
+    }
+  },
+  "mdRelationships": [
+    [
+      "MD-CL-01",
+      "SYS-04",
+      "ソース",
+      "CLAUDE.md \"必ず最初に実行すること\" (L6-L10) → SYS-04"
+    ],
+    [
+      "MD-CL-02",
+      "SYS-04",
+      "ソース",
+      "CLAUDE.md \"指示別の動作\" (L14-L23) → SYS-04"
+    ],
+    [
+      "MD-CL-02",
+      "SYS-05",
+      "ソース",
+      "CLAUDE.md \"指示別の動作\" (L14-L23) → SYS-05"
+    ],
+    [
+      "MD-CL-03",
+      "SYS-06",
+      "ソース",
+      "CLAUDE.md \"プロジェクト管理ファイル\" (L27-L34) → SYS-06"
+    ],
+    [
+      "MD-PR-01",
+      "PR-01",
+      "ソース",
+      "PROCESS.md \"このファイルについて / 設計思想\" (L1-L21) → PR-01"
+    ],
+    [
+      "MD-PR-02",
+      "PR-01",
+      "ソース",
+      "PROCESS.md \"参照ファイル一覧\" (L24-L35) → PR-01"
+    ],
+    [
+      "MD-PR-03",
+      "PR-02",
+      "ソース",
+      "PROCESS.md \"運用モード\" (L38-L63) → PR-02"
+    ],
+    [
+      "MD-PR-04",
+      "PR-04",
+      "ソース",
+      "PROCESS.md \"作業トレース\" (L67-L121) → PR-04"
+    ],
+    [
+      "MD-PR-05",
+      "PR-04",
+      "ソース",
+      "PROCESS.md \"進捗ダッシュボード\" (L124-L162) → PR-04"
+    ],
+    [
+      "MD-PR-06",
+      "PR-01",
+      "ソース",
+      "PROCESS.md \"起動時の動作 (STEP 1-5)\" (L166-L251) → PR-01"
+    ],
+    [
+      "MD-PR-06",
+      "PR-03",
+      "ソース",
+      "PROCESS.md \"起動時の動作 (STEP 1-5)\" (L166-L251) → PR-03"
+    ],
+    [
+      "MD-PR-07",
+      "PR-04",
+      "ソース",
+      "PROCESS.md \"要件トレーサビリティ管理\" (L254-L309) → PR-04"
+    ],
+    [
+      "MD-PR-08",
+      "PR-05",
+      "ソース",
+      "PROCESS.md \"変更管理\" (L312-L350) → PR-05"
+    ],
+    [
+      "MD-PR-09",
+      "PR-06",
+      "ソース",
+      "PROCESS.md \"レビュープロセス\" (L353-L410) → PR-06"
+    ],
+    [
+      "MD-PR-10",
+      "PR-07",
+      "ソース",
+      "PROCESS.md \"ツール適格性確認\" (L413-L434) → PR-07"
+    ],
+    [
+      "MD-PR-11",
+      "PR-08",
+      "ソース",
+      "PROCESS.md \"FMEA / FTA\" (L438-L467) → PR-08"
+    ],
+    [
+      "MD-PR-12",
+      "PR-01",
+      "ソース",
+      "PROCESS.md \"コーディングガイドライン管理\" (L470-L496) → PR-01"
+    ],
+    [
+      "MD-PR-13",
+      "PR-01",
+      "ソース",
+      "PROCESS.md \"外部ライブラリ管理\" (L499-L513) → PR-01"
+    ],
+    [
+      "MD-PR-14",
+      "PR-03",
+      "ソース",
+      "PROCESS.md \"Vモデルフェーズ構成とAI担当範囲\" (L516-L536) → PR-03"
+    ],
+    [
+      "MD-PR-15",
+      "PR-09",
+      "ソース",
+      "PROCESS.md \"規格別フェーズマトリクス\" (L540-L563) → PR-09"
+    ],
+    [
+      "MD-PR-16",
+      "PR-03",
+      "ソース",
+      "PROCESS.md \"各フェーズ詳細 (PH-01〜PH-15)\" (L566-L848) → PR-03"
+    ],
+    [
+      "MD-PR-17",
+      "PR-05",
+      "ソース",
+      "PROCESS.md \"前提変更の取り扱い\" (L852-L866) → PR-05"
+    ],
+    [
+      "MD-PR-18",
+      "PR-10",
+      "ソース",
+      "PROCESS.md \"フォルダ構成\" (L868-L905) → PR-10"
+    ],
+    [
+      "MD-PR-19",
+      "PR-01",
+      "ソース",
+      "PROCESS.md \"共通実行ルール\" (L950-L964) → PR-01"
+    ],
+    [
+      "MD-PR-20",
+      "PR-11",
+      "ソース",
+      "PROCESS.md \"注意事項・免責\" (L968-L974) → PR-11"
+    ],
+    [
+      "MD-IN-01",
+      "IN-01",
+      "ソース",
+      "INGEST.md \"このファイルについて / 設計思想\" (L1-L26) → IN-01"
+    ],
+    [
+      "MD-IN-02",
+      "IN-02",
+      "ソース",
+      "INGEST.md \"フォルダ構成（INGEST用）\" (L29-L49) → IN-02"
+    ],
+    [
+      "MD-IN-03",
+      "IN-03",
+      "ソース",
+      "INGEST.md \"起動時の動作 (STEP 0-2)\" (L52-L93) → IN-03"
+    ],
+    [
+      "MD-IN-04",
+      "IN-04",
+      "ソース",
+      "INGEST.md \"STEP 1：スキャン・目録作成\" (L96-L151) → IN-04"
+    ],
+    [
+      "MD-IN-05",
+      "IN-05",
+      "ソース",
+      "INGEST.md \"STEP 2：分類・評価\" (L154-L223) → IN-05"
+    ],
+    [
+      "MD-IN-06",
+      "IN-06",
+      "ソース",
+      "INGEST.md \"STEP 3：機能要素への再分類\" (L226-L274) → IN-06"
+    ],
+    [
+      "MD-IN-07",
+      "IN-07",
+      "ソース",
+      "INGEST.md \"STEP 4：ギャップ分析\" (L277-L326) → IN-07"
+    ],
+    [
+      "MD-IN-08",
+      "IN-08",
+      "ソース",
+      "INGEST.md \"STEP 5：再文書化・資産変換\" (L329-L387) → IN-08"
+    ],
+    [
+      "MD-IN-09",
+      "IN-09",
+      "ソース",
+      "INGEST.md \"STEP 6：整理完了サマリー\" (L390-L429) → IN-09"
+    ],
+    [
+      "MD-IN-10",
+      "IN-10",
+      "ソース",
+      "INGEST.md \"特殊ケースの取り扱い\" (L433-L479) → IN-10"
+    ],
+    [
+      "MD-IN-11",
+      "IN-11",
+      "ソース",
+      "INGEST.md \"INGEST完了後のCLAUDE.mdとの連携\" (L514-L540) → IN-11"
+    ],
+    [
+      "MD-IN-12",
+      "IN-12",
+      "ソース",
+      "INGEST.md \"注意事項\" (L544-L550) → IN-12"
+    ],
+    [
+      "MD-SYS-01",
+      "SYS-01",
+      "ソース",
+      "PROCESS.md / INGEST.md / CLAUDE.md -> SYS-01"
+    ],
+    [
+      "MD-SYS-02",
+      "SYS-02",
+      "ソース",
+      "PROCESS.md / INGEST.md -> SYS-02"
+    ],
+    [
+      "MD-SYS-03",
+      "SYS-03",
+      "ソース",
+      "PROCESS.md / INGEST.md -> SYS-03"
+    ],
+    [
+      "MD-SYS-07",
+      "SYS-07",
+      "ソース",
+      "PROCESS.md -> SYS-07"
+    ],
+    [
+      "MD-SYS-08",
+      "SYS-08",
+      "ソース",
+      "PROCESS.md / INGEST.md -> SYS-08"
+    ],
+    [
+      "MD-SYS-09",
+      "SYS-09",
+      "ソース",
+      "PROCESS.md / INGEST.md -> SYS-09"
+    ]
+  ]
+}

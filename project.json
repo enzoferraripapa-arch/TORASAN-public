@@ -1,0 +1,843 @@
+{
+  "_schema_version": "3.0",
+  "_description": "TORASAN プロジェクト設定 - Single Source of Truth",
+  "_last_updated": "2026-03-05T03:58:21.082Z",
+  "projectName": "TORASAN 機能安全開発フレームワーク",
+  "category": "開発基盤",
+  "description": "ISO 26262 + Automotive SPICE ベースの機能安全自動開発環境。試験題材: 洗濯機BLDCモータ制御（IEC 60730 Class B）",
+  "owner": "TORA",
+  "createdAt": "2026-02-27",
+  "updatedAt": "2026-03-06",
+  "processVersion": "3.1",
+  "mode": "EXPLORE",
+  "standard": {
+    "base": "ISO26262",
+    "base_version": "2018",
+    "asil": "B",
+    "_asil_note": "プロセス厳密度の指標としてのみ使用。製品安全分類はproduct_override_classを参照",
+    "product_override": "IEC60730",
+    "product_override_class": "ClassB",
+    "_class_note": "製品安全分類: IEC 60730 Class B（製品規制準拠の正式な安全等級）",
+    "spice_level_target": 2,
+    "misra": "MISRA-C:2012",
+    "security": {
+      "automotive": "ISO/SAE21434",
+      "consumer_iot": "ETSI-EN-303-645",
+      "industrial": "IEC62443",
+      "regulations": [
+        "UN-R155",
+        "EU-CRA",
+        "EU-RED-3.3"
+      ],
+      "applicable": "TBD",
+      "_note": "現プロジェクトのネットワーク接続有無により適用法規を確定する"
+    }
+  },
+  "_packages_removed": "v5.1: packages セクション廃止。規格情報は standard セクションに集約。実装コードは各PJリポの src/ に配置",
+  "ai_mode": "full_auto",
+  "product_spec": {
+    "mcu": {
+      "part": "Renesas RL78/G14 (R5F104BG)",
+      "flash_kb": 64,
+      "ram_kb": 5.5,
+      "ram_b": 5632,
+      "clock_mhz": 32,
+      "sub_clock_khz": 15
+    },
+    "motor": {
+      "type": "BLDC",
+      "power_w": 1500,
+      "rated_rpm": 1200,
+      "overspeed_rpm": 1500,
+      "rated_a": 6,
+      "max_a": 8,
+      "max_ma": 8000
+    },
+    "adc": {
+      "bits": 10,
+      "vref_v": 5,
+      "current_hz": 100,
+      "voltage_hz": 10
+    },
+    "wdt": {
+      "timeout_ms": 100,
+      "kick_ms": 50
+    },
+    "voltage_monitor": {
+      "min_v": 4.5,
+      "max_v": 5.5
+    },
+    "timing": {
+      "main_loop_ms": 10,
+      "lid_response_ms": 200,
+      "emergency_stop_ms": 1
+    },
+    "clock_tolerance_pct": 4,
+    "crc_algorithm": "CRC32",
+    "ram_test": {
+      "algorithm": "MarchC",
+      "block_b": 256,
+      "block_count": 22,
+      "full_cycle_s": 2.2
+    }
+  },
+  "traceability": {
+    "sgCount": 6,
+    "fsrCount": 10,
+    "tsrCount": 0,
+    "srCount": 0,
+    "tcCount": 0,
+    "linkedCount": 16,
+    "unlinkedCount": 0,
+    "secGCount": 0,
+    "secRCount": 0,
+    "secSRCount": 0,
+    "secTCCount": 0
+  },
+  "tbd_count": 5,
+  "tbd_items": [
+    "TBD-02: AI自動実行API設計（Claude API連携）",
+    "TBD-03: Gitリポジトリ移行時の構成管理ツール選定",
+    "TBD-06: ネットワーク接続仕様（WiFi/BT有無）→ TARA確定（PH-04）",
+    "TBD-07: SG-001 応答時間100msの妥当性検証（PH-06シミュレーション）",
+    "TBD-08: SG-002 電流センサ応答時間の実測確認（PH-07 HW評価）"
+  ],
+  "ideas": [
+    {
+      "id": "IDEA-001",
+      "title": "WSL/Docker/CI環境ではsetup-tokenで長期OAuthトークン認証",
+      "description": "claude setup-tokenで1年有効トークンを発行しCLAUDE_CODE_OAUTH_TOKEN環境変数で注入。auth loginのTUIフローは不要",
+      "status": "open",
+      "source": "retrospective",
+      "sessionDate": "2026-03-06",
+      "createdDate": "2026-03-06"
+    },
+    {
+      "id": "IDEA-002",
+      "title": "10ファイル超の一括変更はPythonスクリプトを初手で使用",
+      "description": "Edit ツールの並列実行は10件超で失敗しやすい。大量ファイル変更はスクリプト一括処理をデフォルト手段とする",
+      "status": "open",
+      "source": "retrospective",
+      "sessionDate": "2026-03-06",
+      "createdDate": "2026-03-06"
+    },
+    {
+      "id": "IDEA-003",
+      "title": "react-router-dom Data Router API 移行は条件トリガー方式で判断",
+      "description": "現状BrowserRouter(レガシーAPI)で問題なし。移行トリガー: (1)ルート別API呼出が必要 (2)ページ遷移ローディングUX改善要 (3)ルート別エラーバウンダリ要 (4)SSR/RSC要 (5)BrowserRouter正式非推奨化。全トリガー非該当のため見送り",
+      "status": "dismissed",
+      "source": "version-audit",
+      "sessionDate": "2026-03-06",
+      "createdDate": "2026-03-06",
+      "dismissReason": "読み取り専用ダッシュボード+単一データソース構成ではData Routerのメリットがほぼゼロ"
+    },
+    {
+      "id": "IDEA-004",
+      "title": "WSLエージェント委任は「1目的1タスク」原則で分割",
+      "description": "WSLエージェントはコンテキスト制限が厳しく複合タスクでmax_turnsに到達しやすい。委任時は1つの明確な目的に絞り、複合調査はWindows側サブエージェントを使用する",
+      "status": "open",
+      "source": "retrospective",
+      "sessionDate": "2026-03-06",
+      "createdDate": "2026-03-06"
+    }
+  ],
+  "issues": [
+    {
+      "id": "ISS-001",
+      "date": "2026-03-05",
+      "title": "PhaseJson.status と PhaseStatusValue の型不一致",
+      "description": "PhaseJson.status に 'failed' はあるが 'blocked' がない。PhaseStatusValue との統一が必要",
+      "source": "retrospective",
+      "sessionDate": "2026-03-05",
+      "severity": "low",
+      "status": "resolved",
+      "resolvedDate": "2026-03-06",
+      "resolution": "PhaseStatusValue に 'failed' を追加、StatusBadge に failed スタイル追加。両型が統一された"
+    },
+    {
+      "id": "ISS-002",
+      "date": "2026-03-05",
+      "title": "cppcheck/flawfinder PATH 問題",
+      "description": "環境管理ページで cppcheck/flawfinder のパス解決が不安定",
+      "source": "retrospective",
+      "sessionDate": "2026-03-05",
+      "severity": "medium",
+      "status": "resolved",
+      "resolvedDate": "2026-03-06",
+      "resolution": "Python venv ツール(flawfinder)をVENV_SCRIPTSフルパスで解決。VENV_TOOLS Setで管理し、cmd.exe PATH非依存化"
+    },
+    {
+      "id": "ISS-003",
+      "date": "2026-03-05",
+      "title": "Python バージョン比較未実装",
+      "description": "環境チェックで Python バージョンの比較ロジックが未実装",
+      "source": "retrospective",
+      "sessionDate": "2026-03-05",
+      "severity": "low",
+      "status": "open"
+    },
+    {
+      "id": "ISS-004",
+      "date": "2026-03-05",
+      "title": "Phase 実装ごとのセキュリティレビュー習慣化",
+      "description": "Phase 完了時にセキュリティ観点のレビューを実施するプロセスが未確立",
+      "source": "retrospective",
+      "sessionDate": "2026-03-05",
+      "severity": "medium",
+      "status": "resolved",
+      "resolvedDate": "2026-03-06",
+      "resolution": "PROCESS.md §3.2共通ゲートにG-09(セキュリティ観点レビュー)追加。§3.2.1にフェーズ別チェック項目8件を定義"
+    },
+    {
+      "id": "ISS-005",
+      "date": "2026-03-05",
+      "title": "traceMatrix.ts の既存 TypeScript エラー放置",
+      "description": "Fill 型の不一致により tsc -b が失敗する。Vite ビルドは成功するが型チェックが通らない",
+      "source": "retrospective",
+      "sessionDate": "2026-03-05",
+      "severity": "low",
+      "status": "resolved",
+      "resolvedDate": "2026-03-06",
+      "resolution": "全テンプレート(traceMatrix/traceEvidence/processSpec/systemSpec/ingestSpec)の型エラー修正、traceData型をtuple化、client.ts/styling.ts/App.tsx等も修正。tsc 0エラー達成"
+    },
+    {
+      "id": "ISS-006",
+      "date": "2026-03-05",
+      "title": "Startup 自動起動と開発サーバーのポート競合",
+      "description": "Startup の VBS スクリプトが常にポート 3000/3001 を占有し、preview_start と競合する",
+      "source": "retrospective",
+      "sessionDate": "2026-03-05",
+      "severity": "low",
+      "status": "open"
+    },
+    {
+      "id": "ISS-007",
+      "title": "CLI全コマンド未確認による認証方法調査不足",
+      "description": "claude auth loginのTUI問題で長時間の試行錯誤。--helpで全コマンド一覧を最初に確認すべきだった",
+      "severity": "low",
+      "status": "open",
+      "source": "retrospective",
+      "sessionDate": "2026-03-06",
+      "createdDate": "2026-03-06"
+    },
+    {
+      "id": "ISS-008",
+      "title": "プレビュー検証後のアプリ再起動忘れ",
+      "description": "preview_start がポート3000のStartupプロセスを kill するため、検証後に再起動しないとユーザーがダッシュボードを開けなくなる。error_prevention.md §5 にプレビュー検証チェックリストを追加して対応",
+      "severity": "low",
+      "status": "closed",
+      "closedDate": "2026-03-06",
+      "source": "retrospective",
+      "sessionDate": "2026-03-06",
+      "createdDate": "2026-03-06"
+    }
+  ],
+  "phases": {
+    "PH-01": {
+      "name": "プロジェクト計画・安全計画",
+      "spice": "MAN.3",
+      "status": "completed",
+      "docStatus": "v2.1",
+      "gateStatus": "PASS"
+    },
+    "PH-02": {
+      "name": "アイテム定義",
+      "spice": "SYS.1",
+      "status": "completed",
+      "docStatus": "v2.0",
+      "gateStatus": "PASS"
+    },
+    "PH-03": {
+      "name": "HARA",
+      "spice": "SYS.1",
+      "status": "completed",
+      "docStatus": "v2.1",
+      "gateStatus": "PASS"
+    },
+    "PH-04": {
+      "name": "FSC",
+      "spice": "SYS.2",
+      "status": "completed",
+      "docStatus": "v2.1",
+      "gateStatus": "PASS"
+    },
+    "PH-05": {
+      "name": "TSC",
+      "spice": "SYS.3",
+      "status": "completed",
+      "docStatus": "v3.0",
+      "gateStatus": "PASS",
+      "_absorbed": "torasan-test-project"
+    },
+    "PH-06": {
+      "name": "システム設計",
+      "spice": "SYS.3",
+      "status": "completed",
+      "docStatus": "v3.0",
+      "gateStatus": "PASS",
+      "_absorbed": "torasan-test-project"
+    },
+    "PH-07": {
+      "name": "HW設計",
+      "spice": "SYS.3",
+      "status": "completed",
+      "docStatus": "v3.0",
+      "gateStatus": "PASS",
+      "_absorbed": "torasan-test-project"
+    },
+    "PH-08": {
+      "name": "SW安全要求(SRS)",
+      "spice": "SWE.1",
+      "status": "completed",
+      "docStatus": "v3.0",
+      "gateStatus": "PASS",
+      "_absorbed": "torasan-test-project"
+    },
+    "PH-09": {
+      "name": "SWアーキテクチャ設計",
+      "spice": "SWE.2",
+      "status": "completed",
+      "docStatus": "v3.0",
+      "gateStatus": "PASS",
+      "_absorbed": "torasan-test-project"
+    },
+    "PH-10": {
+      "name": "SWユニット設計・実装",
+      "spice": "SWE.3",
+      "status": "completed",
+      "docStatus": "v3.0",
+      "gateStatus": "PASS",
+      "_absorbed": "torasan-test-project"
+    },
+    "PH-11": {
+      "name": "SWテスト仕様・実施",
+      "spice": "SWE.4-6",
+      "status": "in_progress",
+      "docStatus": "v1.0",
+      "gateStatus": "PARTIAL",
+      "_absorbed": "torasan-test-project"
+    },
+    "PH-12": {
+      "name": "HW統合テスト",
+      "spice": "SYS.4",
+      "status": "in_progress",
+      "docStatus": "v1.0",
+      "gateStatus": "PARTIAL",
+      "_absorbed": "torasan-test-project"
+    },
+    "PH-13": {
+      "name": "システムテスト",
+      "spice": "SYS.5",
+      "status": "in_progress",
+      "docStatus": "v1.0",
+      "gateStatus": "PARTIAL",
+      "_absorbed": "torasan-test-project"
+    },
+    "PH-14": {
+      "name": "機能安全検証",
+      "spice": "SYS.5",
+      "status": "not_started",
+      "docStatus": "—",
+      "gateStatus": "—"
+    },
+    "PH-15": {
+      "name": "安全アセスメント",
+      "spice": "SUP.1",
+      "status": "not_started",
+      "docStatus": "—",
+      "gateStatus": "—"
+    }
+  },
+  "changeLog": [
+    {
+      "id": "CHG-001",
+      "date": "2026-02-28",
+      "type": "プロセス改善",
+      "item": "PROCESS.md / project.json / CLAUDE.md",
+      "from": "v2.0 (IEC 60730ベース)",
+      "to": "v3.0 (ISO 26262 + Automotive SPICE フルベース + パッケージ化)",
+      "reason": "マルチ規格対応・AI全自動実行・パッケージ化のための刷新",
+      "affectedPhases": [
+        "全フェーズ"
+      ],
+      "backupRef": "archive/v2/",
+      "approvedBy": "TORA",
+      "status": "完了"
+    },
+    {
+      "id": "CHG-002",
+      "date": "2026-02-28",
+      "type": "プロセス改善",
+      "item": "PROCESS.md §2 / project.json / process_records/",
+      "from": "SPICE プロセスID対応表のみ",
+      "to": "全15プロセスの BP/WP/Outcomes 定義 + PA 2.1/2.2 GP定義 + 能力レベル追跡",
+      "reason": "Automotive SPICE 能力レベル2目標の達成に向けたプロセス融合",
+      "affectedPhases": [
+        "全フェーズ"
+      ],
+      "approvedBy": "TORA",
+      "status": "完了"
+    },
+    {
+      "id": "CHG-003",
+      "date": "2026-02-28",
+      "type": "プロセス改善",
+      "item": "CLAUDE.md",
+      "from": "v3.0（起動時全文読込・archive方式・SPICE手順なし）",
+      "to": "v3.1（トークン節約・Git運用・SPICE評価手順・コミット規約・changeLogルール）",
+      "reason": "AI実行効率の改善とSPICEプロセス運用の実効性確保",
+      "affectedPhases": [
+        "全フェーズ"
+      ],
+      "approvedBy": "TORA",
+      "status": "完了"
+    },
+    {
+      "id": "CHG-004",
+      "date": "2026-02-28",
+      "type": "プロセス改善",
+      "item": "PROCESS.md §3",
+      "from": "v3.0（§3 概要レベルのフェーズ一覧のみ・34行）",
+      "to": "v3.1（全15フェーズの INPUT/OUTPUT/PROCEDURE/GATE 詳細定義・約800行追加）",
+      "reason": "V-model各フェーズの実行手順を具体化し、AIによる自動実行とSPICE BP整合を実現",
+      "affectedPhases": [
+        "全フェーズ"
+      ],
+      "approvedBy": "TORA",
+      "status": "完了"
+    },
+    {
+      "id": "CHG-005",
+      "date": "2026-03-02",
+      "type": "プロセス改善",
+      "item": "PH-01 成果物 + project.json",
+      "from": "1周目: IEC60730単独、フレームワーク向けMS、ツール4種、セキュリティなし",
+      "to": "2周目: 二重規格体制、製品開発MS(M-01〜M-09)、ツール7種(env-check確認)、セキュリティ規格体系追加",
+      "reason": "2周目レビューによるv3プロセス完全準拠 + サイバーセキュリティ法規・規格の枠組み追加",
+      "affectedPhases": [
+        "PH-01",
+        "PH-03",
+        "PH-04",
+        "PH-05",
+        "PH-08",
+        "PH-10",
+        "PH-11",
+        "PH-14"
+      ],
+      "approvedBy": "TORA",
+      "status": "完了"
+    },
+    {
+      "id": "CHG-006",
+      "date": "2026-03-02",
+      "type": "要件変更",
+      "item": "PH-02 アイテム定義 + SYS.1プロセス記録",
+      "from": "1周目: 運用シナリオなし、HAZ-ID体系、安全機能未体系化",
+      "to": "2周目: OP-01〜05運用シナリオ、HZ-xx/SF-xx/TH-xx統一ID、product_spec完全反映",
+      "reason": "PROCESS.md v3 ゲート条件(G-02-01)準拠 + セキュリティ脅威枠組み導入",
+      "affectedPhases": [
+        "PH-02",
+        "PH-03"
+      ],
+      "approvedBy": "TORA",
+      "status": "完了"
+    },
+    {
+      "id": "CHG-007",
+      "date": "2026-03-02",
+      "type": "要件変更",
+      "item": "PH-03 HARA + トレーサビリティ + SYS.1プロセス記録",
+      "from": "1周目: HAZ-ID体系、SG-004=MCU/SG-005=電圧/SG-006=漏電、IEC60730単独、TARA無し、トレーサビリティ文書なし",
+      "to": "2周目: HZ-xx体系、SG-004=漏電/SG-005=MCU/SG-006=電圧(PROCESS.md整合)、二重規格ASIL判定、TARA予備評価、docs/トレーサビリティ.md新規作成",
+      "reason": "PROCESS.md v3 ゲート条件(G-03-01〜07)準拠 + SG番号の/fmeaスキル・PROCESS.md整合 + セキュリティ段階的導入",
+      "affectedPhases": [
+        "PH-03",
+        "PH-04",
+        "PH-05"
+      ],
+      "approvedBy": "TORA",
+      "status": "完了"
+    },
+    {
+      "id": "CHG-008",
+      "date": "2026-03-02",
+      "type": "要件変更",
+      "item": "PH-04 FSC + トレーサビリティ + SYS.2プロセス記録",
+      "from": "1周目: SG-004=MCU/SG-005=電圧、TBD-001〜005未確定、FTTI分析なし、セキュリティ考慮なし",
+      "to": "2周目: SG番号HARA整合、FSR10件確立(SG-004=HW対策)、product_spec全反映、FTTI分析、多層防御構造、セキュリティ考慮追加",
+      "reason": "2周目HARA SG番号整合 + product_spec活用 + 安全コンセプト品質向上",
+      "affectedPhases": [
+        "PH-04",
+        "PH-05",
+        "PH-08"
+      ],
+      "approvedBy": "TORA",
+      "status": "完了"
+    },
+    {
+      "id": "CHG-009",
+      "date": "2026-03-02",
+      "type": "要件変更",
+      "item": "HARA / FSC / トレーサビリティ",
+      "from": "ASIL B（ISO 26262 車載固有分類）を全SG/FSRに適用",
+      "to": "IEC 60730 Class B（製品安全分類）に修正。ISO 26262 S×E×Cは補足リスク分析ツールとして位置づけ",
+      "reason": "洗濯機製品の安全分類はIEC 60730に基づくべきであり、車載固有のASIL判定は不適切。ISO 26262はプロセス手法としてのみ活用",
+      "affectedPhases": [
+        "PH-03",
+        "PH-04",
+        "PH-05",
+        "PH-08"
+      ],
+      "approvedBy": "TORA",
+      "status": "完了"
+    },
+    {
+      "id": "CHG-010",
+      "date": "2026-03-02",
+      "type": "プロセス改善",
+      "item": "CLAUDE.md + PROCESS.md 基本フロー見直し",
+      "from": "v3.3/v3.1: ASIL前提のフロー、規格整合チェックなし、セッション開始/終了フロー不十分",
+      "to": "v3.4/v3.2: PH-03 product_override分岐追加、共通ゲートG-08新設、全PHヘッダ表記統一、セッション開始フロー新設(引継ぎ確認+規格チェック)、終了フロー改善(規格チェック+フォローアップ追加)、ダッシュボード表示明確化、フェーズ実行フロー強化",
+      "reason": "前回セッション反省会の教訓反映（改善#3:PROCESS.md分岐 + 問題1-5の根本対策をプロセスに組込）",
+      "affectedPhases": [
+        "全フェーズ"
+      ],
+      "approvedBy": "TORA",
+      "status": "完了"
+    },
+    {
+      "id": "CHG-011",
+      "date": "2026-03-02",
+      "type": "プロセス改善",
+      "item": "/session スキル統合改善 + /session-handoff DEPRECATED化",
+      "from": "/session と /session-handoff が並立、テンプレート重複、新規PJ非対応",
+      "to": "/session に統合（新規PJ対応・handoff吸収・master マージ追加）、CLAUDE.md v3.7、関連4ファイル参照更新",
+      "reason": "セッション管理の重複解消、マルチドメインPJ対応、公式ベストプラクティス反映",
+      "affectedPhases": [
+        "全フェーズ"
+      ],
+      "approvedBy": "TORA",
+      "status": "完了"
+    },
+    {
+      "date": "2026-03-06",
+      "description": "ISS-007, IDEA-001 追加（セッション10反省会）"
+    },
+    {
+      "date": "2026-03-06",
+      "description": "IDEA-002 追加、CLAUDE.md v5.0 圧縮、Phase 1 トークン最適化実装（セッション11反省会）"
+    },
+    {
+      "date": "2026-03-06",
+      "description": "依存関係バージョンアップ: fastify明示追加, @types/node ^24, TS ~5.9.3, pytz 2026.1。ISS-001/ISS-005 resolved。IDEA-003(Data Router移行見送り)追加。全テンプレート型エラー修正でtsc 0エラー達成"
+    },
+    {
+      "date": "2026-03-06",
+      "description": "全体アーキテクチャ仕様書作成(MD+Python DOCX+GUI architectureSpec.tsテンプレート)。ISS-008/IDEA-004追加。セッション12反省会"
+    },
+    {
+      "date": "2026-03-06",
+      "description": "クロスPJ基盤構築（env_state.md + session cross_pj_check + schedule 2タスク）。セッション13"
+    },
+    {
+      "date": "2026-03-06",
+      "description": "Phase III: torasan-test-project 吸収完了。docs 13ファイル(PH-05~13+コーディングガイドライン), src 30ファイル, projects/bldc_washer/ エントリ作成。PH-05~10→completed, PH-11~13→in_progress にマージ。凡ミス防止ナレッジ(error_prevention.md)新規作成。session スキルに Phase D マルチエージェントレビューゲート追加。セッション14"
+    },
+    {
+      "date": "2026-03-06",
+      "description": "PROCESS.md WPテーブル是正(CHG-017/PRB-004、7エントリ修正)。ISS-008クローズ(プレビュー検証チェックリスト追加)。記憶管理アーキテクチャ改善(レトロスペクティブS1-S9 archive化+lessons_summary、MEMORY.md再構成、session スキルに記憶棚卸しステップ追加)。セッション15"
+    },
+    {
+      "date": "2026-03-06",
+      "description": "S15持越し6件全完了。SPICE評価更新(SYS.3/SWE.1-2→L1、SWE.3→P)。gateLog PH-05~10追加。S13 retro再構成。ISS-002修正(flawfinder venvパス解決)。ISS-004解決(G-09セキュリティレビューゲート+§3.2.1)。server/ tsc 0エラー化(@types/ws+tsconfig修正)。セッション16"
+    },
+    {
+      "date": "2026-03-08",
+      "description": "SWE.5/SWE.6 GP詳細テーブル追加(v3.0)。§3: GP2.2.1-2.2.4成果物管理詳細+レビュー所見管理。§4: GP2.1.1-2.1.7構造化テーブル展開。PA2.1/PA2.2 L→F。セッション28"
+    }
+  ],
+  "spice_assessment": {
+    "_description": "Automotive SPICE 能力レベル評価。N=未達成(0-15%), P=部分達成(16-50%), L=概ね達成(51-85%), F=完全達成(86-100%)",
+    "target_level": 2,
+    "assessment_date": "2026-03-08",
+    "processes": {
+      "SYS.1": {
+        "pa_1_1": "F",
+        "pa_2_1": "L",
+        "pa_2_2": "L",
+        "level": 2,
+        "record": "process_records/SYS.1_requirements_elicitation.md"
+      },
+      "SYS.2": {
+        "pa_1_1": "F",
+        "pa_2_1": "L",
+        "pa_2_2": "L",
+        "level": 2,
+        "record": "process_records/SYS.2_system_requirements.md"
+      },
+      "SYS.3": {
+        "pa_1_1": "F",
+        "pa_2_1": "F",
+        "pa_2_2": "F",
+        "level": 2,
+        "record": "process_records/SYS.3_system_architecture.md",
+        "_note": "S16評価: 成果物(06_システム設計.md v3.0)完全だが実施記録(BP日時)未記入"
+      },
+      "SYS.4": {
+        "pa_1_1": "L",
+        "pa_2_1": "F",
+        "pa_2_2": "L",
+        "level": 1,
+        "record": "process_records/SYS.4_system_integration.md"
+      },
+      "SYS.5": {
+        "pa_1_1": "L",
+        "pa_2_1": "F",
+        "pa_2_2": "L",
+        "level": 1,
+        "record": "process_records/SYS.5_system_qualification.md"
+      },
+      "SWE.1": {
+        "pa_1_1": "F",
+        "pa_2_1": "F",
+        "pa_2_2": "F",
+        "level": 2,
+        "record": "process_records/SWE.1_requirements.md",
+        "_note": "S16評価: SR20件+テスト可能性+トレーサビリティ確立、管理活動記録不足"
+      },
+      "SWE.2": {
+        "pa_1_1": "F",
+        "pa_2_1": "F",
+        "pa_2_2": "F",
+        "level": 2,
+        "record": "process_records/SWE.2_architecture.md",
+        "_note": "S16評価: 8SA/27SIF/20SR割当完全、実施プロセス記録未完成"
+      },
+      "SWE.3": {
+        "pa_1_1": "F",
+        "pa_2_1": "F",
+        "pa_2_2": "F",
+        "level": 2,
+        "record": "process_records/SWE.3_detailed_design.md",
+        "_note": "S16評価: 設計文書存在(20UT)だが実装との整合性検証・トレーサビリティ欠落"
+      },
+      "SWE.4": {
+        "pa_1_1": "F",
+        "pa_2_1": "F",
+        "pa_2_2": "F",
+        "level": 2,
+        "record": "process_records/SWE.4_unit_verification.md",
+        "_note": "S16評価: テスト仕様108TC完成、実施未着手"
+      },
+      "SWE.5": {
+        "pa_1_1": "F",
+        "pa_2_1": "F",
+        "pa_2_2": "F",
+        "level": 2,
+        "record": "process_records/SWE.5_integration_test.md",
+        "_note": "S28: GP詳細テーブル追加(v3.0)によりPA2.1/2.2 L→F"
+      },
+      "SWE.6": {
+        "pa_1_1": "F",
+        "pa_2_1": "F",
+        "pa_2_2": "F",
+        "level": 2,
+        "record": "process_records/SWE.6_qualification_test.md",
+        "_note": "S28: GP詳細テーブル追加(v3.0)によりPA2.1/2.2 L→F"
+      },
+      "MAN.3": {
+        "pa_1_1": "F",
+        "pa_2_1": "F",
+        "pa_2_2": "L",
+        "level": 2,
+        "record": "process_records/MAN.3_project_plan.md"
+      },
+      "SUP.1": {
+        "pa_1_1": "F",
+        "pa_2_1": "F",
+        "pa_2_2": "F",
+        "level": 2,
+        "record": "process_records/SUP.1_quality_assurance.md"
+      },
+      "SUP.8": {
+        "pa_1_1": "F",
+        "pa_2_1": "L",
+        "pa_2_2": "F",
+        "level": 2,
+        "record": "process_records/SUP.8_config_management.md"
+      },
+      "SUP.9": {
+        "pa_1_1": "F",
+        "pa_2_1": "F",
+        "pa_2_2": "F",
+        "level": 2,
+        "record": "process_records/SUP.9_problem_resolution.md"
+      },
+      "SUP.10": {
+        "pa_1_1": "F",
+        "pa_2_1": "F",
+        "pa_2_2": "F",
+        "level": 2,
+        "record": "process_records/SUP.10_change_request.md"
+      }
+    }
+  },
+  "problemLog": [],
+  "reviewLog": [],
+  "gateLog": [
+    {
+      "phase": "PH-01",
+      "date": "2026-03-02",
+      "gates": {
+        "G-01-01": "PASS",
+        "G-01-02": "PASS",
+        "G-01-03": "PASS",
+        "G-01-04": "PASS",
+        "G-01-05": "PASS",
+        "G-01-06": "PASS"
+      },
+      "result": "PASS",
+      "reviewer": "TORA",
+      "notes": "2周目: v3プロセス完全準拠、セキュリティ対応方針追加"
+    },
+    {
+      "phase": "PH-02",
+      "date": "2026-03-02",
+      "gates": {
+        "G-02-01": "PASS",
+        "G-02-02": "PASS",
+        "G-02-03": "PASS",
+        "G-02-04": "PASS",
+        "G-02-05": "PASS",
+        "G-02-06": "PASS"
+      },
+      "result": "PASS",
+      "reviewer": "TORA",
+      "notes": "2周目: 運用シナリオOP-01〜05追加、HZ/SF/TH ID体系統一"
+    },
+    {
+      "phase": "PH-03",
+      "date": "2026-03-02",
+      "gates": {
+        "G-03-01": "PASS",
+        "G-03-02": "PASS",
+        "G-03-03": "PASS",
+        "G-03-04": "PASS",
+        "G-03-05": "PASS",
+        "G-03-06": "PASS",
+        "G-03-07": "PASS"
+      },
+      "result": "PASS",
+      "reviewer": "TORA",
+      "notes": "2周目: HZ-ID統一、SG番号PROCESS.md整合、IEC60730 ClassB分類+S×E×C補足分析、TARA予備評価、トレーサビリティ文書新規作成"
+    },
+    {
+      "phase": "PH-04",
+      "date": "2026-03-02",
+      "gates": {
+        "G-04-01": "PASS",
+        "G-04-02": "PASS",
+        "G-04-03": "PASS",
+        "G-04-04": "PASS",
+        "G-04-05": "PASS",
+        "G-04-06": "PASS"
+      },
+      "result": "PASS",
+      "reviewer": "TORA",
+      "notes": "2周目: SG番号HARA整合、product_spec全パラメータ反映、FTTI分析追加、多層防御構造、セキュリティ考慮"
+    },
+    {
+      "phase": "PH-05",
+      "date": "2026-03-06",
+      "gates": {
+        "G-05-01": "PASS",
+        "G-05-02": "PASS",
+        "G-05-03": "PASS",
+        "G-05-04": "PASS",
+        "G-05-05": "PASS",
+        "G-05-06": "PASS"
+      },
+      "result": "PASS",
+      "reviewer": "TORA",
+      "notes": "test-project吸収: FSR10件→TSR15件展開完了、双方向トレーサビリティ完全、product_spec整合"
+    },
+    {
+      "phase": "PH-06",
+      "date": "2026-03-06",
+      "gates": {
+        "G-06-01": "PASS",
+        "G-06-02": "PASS",
+        "G-06-03": "PASS",
+        "G-06-04": "PASS",
+        "G-06-05": "PASS",
+        "G-06-06": "PASS"
+      },
+      "result": "PASS",
+      "reviewer": "TORA",
+      "notes": "test-project吸収: 3層アーキテクチャ(App/BSW/HW)完全定義、HW/SWインタフェース全記載"
+    },
+    {
+      "phase": "PH-07",
+      "date": "2026-03-06",
+      "gates": {
+        "G-07-01": "PASS",
+        "G-07-02": "PASS",
+        "G-07-03": "PASS",
+        "G-07-04": "PASS",
+        "G-07-05": "PASS",
+        "G-07-06": "PASS"
+      },
+      "result": "PASS",
+      "reviewer": "TORA",
+      "notes": "test-project吸収: HW安全機構(WDT/電圧監視/過電流保護)定義、ピン割当・電圧値整合"
+    },
+    {
+      "phase": "PH-08",
+      "date": "2026-03-06",
+      "gates": {
+        "G-08-01": "PASS",
+        "G-08-02": "PASS",
+        "G-08-03": "PASS",
+        "G-08-04": "PASS",
+        "G-08-05": "PASS",
+        "G-08-06": "PASS"
+      },
+      "result": "PASS",
+      "reviewer": "TORA",
+      "notes": "test-project吸収: SR16件+DR4件=20件、IEC60730 AnnexH診断要件4種完備、全SR定量受容基準あり"
+    },
+    {
+      "phase": "PH-09",
+      "date": "2026-03-06",
+      "gates": {
+        "G-09-01": "PASS",
+        "G-09-02": "PASS",
+        "G-09-03": "PASS",
+        "G-09-04": "PASS",
+        "G-09-05": "PASS",
+        "G-09-06": "PASS",
+        "G-09-07": "PASS"
+      },
+      "result": "PASS",
+      "reviewer": "TORA",
+      "notes": "test-project吸収: 8SA/27SIF割当完全、リソース制約内(RAM≦4.5KB/ROM≦56KB)、MISRA C:2012ガイドライン作成済"
+    },
+    {
+      "phase": "PH-10",
+      "date": "2026-03-06",
+      "gates": {
+        "G-10-01": "PASS",
+        "G-10-02": "PASS",
+        "G-10-03": "PASS",
+        "G-10-04": "PASS",
+        "G-10-05": "PASS",
+        "G-10-06": "PASS",
+        "G-10-07": "PASS",
+        "G-10-08": "PASS"
+      },
+      "result": "PASS",
+      "reviewer": "TORA",
+      "notes": "test-project吸収: 20UT/8SA全分解、MISRA C:2012準拠実装19ファイル、product_specマクロ定義一致"
+    }
+  ]
+}

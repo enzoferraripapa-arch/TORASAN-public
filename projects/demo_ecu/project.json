@@ -1,0 +1,13 @@
+{
+  "projectId": "demo_ecu",
+  "projectName": "Demo ECU 機能安全開発",
+  "created": "2026-02-27",
+  "asil": "B",
+  "status": "initial",
+  "phases": {
+    "PH-01": "completed",
+    "PH-02": "not_started",
+    "PH-03": "not_started"
+  },
+  "description": "TORASAN フレームワーク初期検証用デモプロジェクト"
+}

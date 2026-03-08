@@ -1,0 +1,28 @@
+# TORASAN マニュアル差分レポート
+# 文書: ops
+# バージョン: v12
+# 生成日時: 2026-03-07 19:29:20
+# 追加: +2 行 / 削除: -2 行
+# 変更セクション: 2 箇所
+#============================================================
+
+--- 操作手順書 (前回)
++++ 操作手順書 (今回)
+@@ -34,7 +34,7 @@
+ $ git clone {TORASAN_REPO_URL}
+ $ cd TORASAN
+ 2.2 汎用スキルの配布
+-install.sh を実行して、汎用スキル（14本）とグローバルナレッジ（7本）を ~/.claude/ に配布する。
++install.sh を実行して、汎用スキル（14本）とグローバルナレッジ（8本）を ~/.claude/ に配布する。
+ スキル配布
+ Step 1: TORASAN リポジトリのルートに移動する
+ Step 2: install.sh を実行する（--dry-run で事前確認可能）
+@@ -44,7 +44,7 @@
+ 配布されるもの:
+ 種別種別種別 | 配布先配布先配布先 | 数量数量数量
+ 汎用スキル汎用スキル汎用スキル | ~/.claude/skills/{name}/~/.claude/skills/{name}/~/.claude/skills/{name}/ | 14本14本14本
+-グローバルナレッジグローバルナレッジグローバルナレッジ | ~/.claude/knowledge/~/.claude/knowledge/~/.claude/knowledge/ | 7本7本7本
++グローバルナレッジグローバルナレッジグローバルナレッジ | ~/.claude/knowledge/~/.claude/knowledge/~/.claude/knowledge/ | 8本8本8本
+ マニフェストマニフェストマニフェスト | ~/.claude/.shared-skills-manifest.json~/.claude/.shared-skills-manifest.json~/.claude/.shared-skills-manifest.json | 1ファイル1ファイル1ファイル
+ NOTE: install.sh は何度実行しても安全です（冪等性あり）。スキル更新時にも同じコマンドで配布できます。
+ 2.3 開発環境の検証

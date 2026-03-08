@@ -1,0 +1,25 @@
+{
+  "projectId": "<<PROJECT_ID>>",
+  "projectName": "<<PROJECT_NAME>>",
+  "created": "<<DATE>>",
+  "asil": "<<ASIL_LEVEL: A/B/C/D>>",
+  "status": "initial",
+  "phases": {
+    "PH-01": "not_started",
+    "PH-02": "not_started",
+    "PH-03": "not_started",
+    "PH-04": "not_started",
+    "PH-05": "not_started",
+    "PH-06": "not_started",
+    "PH-07": "not_started",
+    "PH-08": "not_started",
+    "PH-09": "not_started",
+    "PH-10": "not_started",
+    "PH-11": "not_started",
+    "PH-12": "not_started",
+    "PH-13": "not_started",
+    "PH-14": "not_started",
+    "PH-15": "not_started"
+  },
+  "description": "<<DESCRIPTION>>"
+}

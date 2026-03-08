@@ -1,0 +1,411 @@
+{
+  "version": 16,
+  "documents": {
+    "spec": {
+      "version": 12,
+      "version_label": "v1.1",
+      "hash": "97394ec27546ee773620acd339356a6b0317256e4ea04c373c9d26a4cabfcd8a",
+      "generated_at": "2026-03-07 19:47:50",
+      "file": "TORASAN_フレームワーク仕様書.docx"
+    },
+    "ops": {
+      "version": 16,
+      "version_label": "v1.1",
+      "hash": "02be21946aa9a370802e8f2e2d94fa71811daf49fcb46d446f0751c0812f0007",
+      "generated_at": "2026-03-07 20:37:01",
+      "file": "TORASAN_操作手順書.docx"
+    }
+  },
+  "history": [
+    {
+      "version": 1,
+      "document": "spec",
+      "timestamp": "2026-03-02 15:48:34",
+      "changes": {
+        "added": 0,
+        "removed": 0,
+        "sections": 0
+      },
+      "prev_hash": "ba051cf7516380c9c09e1fb300731d501204210e3be3c29520ffa6d0dfd9958e",
+      "new_hash": "d2864fa805e7c6ef8e0808ea45a66b84c8d457c6d87a95cd81c5452d77fe052f"
+    },
+    {
+      "version": 1,
+      "document": "ops",
+      "timestamp": "2026-03-02 15:48:35",
+      "changes": {
+        "added": 0,
+        "removed": 0,
+        "sections": 0
+      },
+      "prev_hash": "3691b76704670c4a4b6d488af567fe06a7661325ffaa84729315c5f048dfbf3a",
+      "new_hash": "baa305315682d849e563f6ff6e3014903f32feb986225f30ef15e7350edaaf7c"
+    },
+    {
+      "version": 2,
+      "document": "spec",
+      "timestamp": "2026-03-02 15:56:36",
+      "changes": {
+        "added": 39,
+        "removed": 0,
+        "sections": 1
+      },
+      "prev_hash": "d2864fa805e7c6ef8e0808ea45a66b84c8d457c6d87a95cd81c5452d77fe052f",
+      "new_hash": "f3dcb09009635bfbc72aa834152951d7f8cb721e78cd2ca7f4c950743651fff1",
+      "diff_report": "docs\\manuals\\diff_reports\\20260302_155636_v2_spec.diff.txt"
+    },
+    {
+      "version": 2,
+      "document": "ops",
+      "timestamp": "2026-03-02 15:56:37",
+      "changes": {
+        "added": 31,
+        "removed": 0,
+        "sections": 1
+      },
+      "prev_hash": "baa305315682d849e563f6ff6e3014903f32feb986225f30ef15e7350edaaf7c",
+      "new_hash": "baf11f5b7c86d5106242e4d2153291d31ad295051e2fa9e9f9ce1ceac0b9802f",
+      "diff_report": "docs\\manuals\\diff_reports\\20260302_155637_v2_ops.diff.txt"
+    },
+    {
+      "version": 3,
+      "document": "ops",
+      "timestamp": "2026-03-02 16:44:52",
+      "changes": {
+        "added": 9,
+        "removed": 3,
+        "sections": 1
+      },
+      "prev_hash": "baf11f5b7c86d5106242e4d2153291d31ad295051e2fa9e9f9ce1ceac0b9802f",
+      "new_hash": "8c1914cfeb4ca6a9901293b12e835f59c2338162a8a27266542f94c261798e99",
+      "diff_report": "docs\\manuals\\diff_reports\\20260302_164452_v3_ops.diff.txt"
+    },
+    {
+      "version": 3,
+      "document": "spec",
+      "timestamp": "2026-03-02 16:49:21",
+      "changes": {
+        "added": 0,
+        "removed": 0,
+        "sections": 0
+      },
+      "prev_hash": "f3dcb09009635bfbc72aa834152951d7f8cb721e78cd2ca7f4c950743651fff1",
+      "new_hash": "83f5e09b554e8a3acf677c671025b4a27f76a2f691357110208c9fe21cc58e99"
+    },
+    {
+      "version": 4,
+      "document": "ops",
+      "timestamp": "2026-03-02 16:49:22",
+      "changes": {
+        "added": 0,
+        "removed": 0,
+        "sections": 0
+      },
+      "prev_hash": "8c1914cfeb4ca6a9901293b12e835f59c2338162a8a27266542f94c261798e99",
+      "new_hash": "c2e51d3bd2dcefafe4b5cf461050ffef1ce2dd91f4f82736c230e8a634e79a32"
+    },
+    {
+      "version": 4,
+      "document": "spec",
+      "timestamp": "2026-03-07 01:42:26",
+      "changes": {
+        "added": 14,
+        "removed": 2,
+        "sections": 2
+      },
+      "prev_hash": "83f5e09b554e8a3acf677c671025b4a27f76a2f691357110208c9fe21cc58e99",
+      "new_hash": "812b8d0072a6d0bbcd820b28a8dfc914a5902c98123dae7c8f0255adb3aca6df",
+      "diff_report": "docs\\manuals\\diff_reports\\20260307_014226_v4_spec.diff.txt"
+    },
+    {
+      "version": 5,
+      "document": "ops",
+      "timestamp": "2026-03-07 01:42:27",
+      "changes": {
+        "added": 2,
+        "removed": 2,
+        "sections": 1
+      },
+      "prev_hash": "c2e51d3bd2dcefafe4b5cf461050ffef1ce2dd91f4f82736c230e8a634e79a32",
+      "new_hash": "d88661156ae421734afb6bc3f0f13df70f1d5fe99bf0ffed9dd87abea400f548",
+      "diff_report": "docs\\manuals\\diff_reports\\20260307_014227_v5_ops.diff.txt"
+    },
+    {
+      "version": 5,
+      "document": "spec",
+      "timestamp": "2026-03-07 02:12:23",
+      "changes": {
+        "added": 8,
+        "removed": 3,
+        "sections": 4
+      },
+      "prev_hash": "812b8d0072a6d0bbcd820b28a8dfc914a5902c98123dae7c8f0255adb3aca6df",
+      "new_hash": "f39db9cc2f88d1a9c230fc4d704335b7db2a5fb51c14932d061c89bec3754885",
+      "diff_report": "docs\\manuals\\diff_reports\\20260307_021223_v5_spec.diff.txt"
+    },
+    {
+      "version": 6,
+      "document": "ops",
+      "timestamp": "2026-03-07 02:12:24",
+      "changes": {
+        "added": 0,
+        "removed": 0,
+        "sections": 0
+      },
+      "prev_hash": "d88661156ae421734afb6bc3f0f13df70f1d5fe99bf0ffed9dd87abea400f548",
+      "new_hash": "2e9de5f5a515faa81cce5ae683f86d1275500101afb72e4bfe9f541646a9fa8a"
+    },
+    {
+      "version": 6,
+      "document": "spec",
+      "timestamp": "2026-03-07 02:56:32",
+      "changes": {
+        "added": 0,
+        "removed": 0,
+        "sections": 0
+      },
+      "prev_hash": "f39db9cc2f88d1a9c230fc4d704335b7db2a5fb51c14932d061c89bec3754885",
+      "new_hash": "1552ca430d16df4c0feca8f47689e34e3b088f247d2cdf8cde4fe6b12d0bb278"
+    },
+    {
+      "version": 7,
+      "document": "ops",
+      "timestamp": "2026-03-07 02:56:32",
+      "changes": {
+        "added": 0,
+        "removed": 0,
+        "sections": 0
+      },
+      "prev_hash": "2e9de5f5a515faa81cce5ae683f86d1275500101afb72e4bfe9f541646a9fa8a",
+      "new_hash": "9f32fdea95f0712ba6f85b820dbbf0a0b1f810f271132b605f502f78bcd710f3"
+    },
+    {
+      "version": 7,
+      "document": "spec",
+      "timestamp": "2026-03-07 03:03:09",
+      "changes": {
+        "added": 0,
+        "removed": 0,
+        "sections": 0
+      },
+      "prev_hash": "1552ca430d16df4c0feca8f47689e34e3b088f247d2cdf8cde4fe6b12d0bb278",
+      "new_hash": "7488b1050597cc6b5b9142f8ba864645abacd11f15fbbdb2b93b235b06ddbbfa"
+    },
+    {
+      "version": 8,
+      "document": "ops",
+      "timestamp": "2026-03-07 03:03:09",
+      "changes": {
+        "added": 0,
+        "removed": 0,
+        "sections": 0
+      },
+      "prev_hash": "9f32fdea95f0712ba6f85b820dbbf0a0b1f810f271132b605f502f78bcd710f3",
+      "new_hash": "cebdd2b9065a687d11c6b1a8340a35b540fdf868705afbd98075cd535c76cc49"
+    },
+    {
+      "version": 8,
+      "document": "spec",
+      "timestamp": "2026-03-07 03:23:41",
+      "changes": {
+        "added": 0,
+        "removed": 0,
+        "sections": 0
+      },
+      "prev_hash": "7488b1050597cc6b5b9142f8ba864645abacd11f15fbbdb2b93b235b06ddbbfa",
+      "new_hash": "ac0ea1a4fcdc5eb701a8ad8566716e4a46beb3167ba3e43356d4439dabf9f3a6"
+    },
+    {
+      "version": 9,
+      "document": "ops",
+      "timestamp": "2026-03-07 03:23:42",
+      "changes": {
+        "added": 0,
+        "removed": 0,
+        "sections": 0
+      },
+      "prev_hash": "cebdd2b9065a687d11c6b1a8340a35b540fdf868705afbd98075cd535c76cc49",
+      "new_hash": "4d4ac3e024da576f728a31d4ac4e9f1b1e961a2eb1a1ec69cf8517848d12cde6"
+    },
+    {
+      "version": 9,
+      "document": "spec",
+      "timestamp": "2026-03-07 03:35:22",
+      "changes": {
+        "added": 0,
+        "removed": 0,
+        "sections": 0
+      },
+      "prev_hash": "ac0ea1a4fcdc5eb701a8ad8566716e4a46beb3167ba3e43356d4439dabf9f3a6",
+      "new_hash": "78da921d3ee58aa1cf4ef7d9e3e8daaea5e96a7807a1964761955cdf76d5d9c6"
+    },
+    {
+      "version": 10,
+      "document": "ops",
+      "timestamp": "2026-03-07 03:35:23",
+      "changes": {
+        "added": 0,
+        "removed": 0,
+        "sections": 0
+      },
+      "prev_hash": "4d4ac3e024da576f728a31d4ac4e9f1b1e961a2eb1a1ec69cf8517848d12cde6",
+      "new_hash": "fceb15d013714cc16220d97572149ecc9a28f4abc9e0c1d6a7119b0bdc42a1c1"
+    },
+    {
+      "version": 10,
+      "document": "spec",
+      "timestamp": "2026-03-07 04:00:09",
+      "changes": {
+        "added": 0,
+        "removed": 0,
+        "sections": 0
+      },
+      "prev_hash": "78da921d3ee58aa1cf4ef7d9e3e8daaea5e96a7807a1964761955cdf76d5d9c6",
+      "new_hash": "a075c8193371020e2d7ae5dbbb5f9d4f21aab0bed9aebcdf5a0971da32c45f25"
+    },
+    {
+      "version": 11,
+      "document": "ops",
+      "timestamp": "2026-03-07 04:00:09",
+      "changes": {
+        "added": 0,
+        "removed": 0,
+        "sections": 0
+      },
+      "prev_hash": "fceb15d013714cc16220d97572149ecc9a28f4abc9e0c1d6a7119b0bdc42a1c1",
+      "new_hash": "61baff7273ea6132786e4001d587e4ee53bfc895065fee1f8be7dfbe3ed7bc93"
+    },
+    {
+      "version": 11,
+      "document": "spec",
+      "timestamp": "2026-03-07 19:29:19",
+      "changes": {
+        "added": 12,
+        "removed": 10,
+        "sections": 4
+      },
+      "prev_hash": "a075c8193371020e2d7ae5dbbb5f9d4f21aab0bed9aebcdf5a0971da32c45f25",
+      "new_hash": "a3daaf3f5c74d2811d3d35c3b9cc46e36b748e63751269b2cce9f7ac4bf6623b",
+      "diff_report": "docs\\manuals\\diff_reports\\20260307_192919_v11_spec.diff.txt"
+    },
+    {
+      "version": 12,
+      "document": "ops",
+      "timestamp": "2026-03-07 19:29:20",
+      "changes": {
+        "added": 2,
+        "removed": 2,
+        "sections": 2
+      },
+      "prev_hash": "61baff7273ea6132786e4001d587e4ee53bfc895065fee1f8be7dfbe3ed7bc93",
+      "new_hash": "4c65ae384cbc369f4632ae4035fd9656c017ac1896baaf76c8726c5ec2eafb1e",
+      "diff_report": "docs\\manuals\\diff_reports\\20260307_192920_v12_ops.diff.txt"
+    },
+    {
+      "version": 12,
+      "version_label": "v1.1",
+      "document": "spec",
+      "timestamp": "2026-03-07 19:47:50",
+      "change_summary": "バージョン管理・改版履歴の動的生成対応、数値整合性修正、packages/ 廃止反映",
+      "changes": {
+        "added": 6,
+        "removed": 4,
+        "sections": 1
+      },
+      "prev_hash": "a3daaf3f5c74d2811d3d35c3b9cc46e36b748e63751269b2cce9f7ac4bf6623b",
+      "new_hash": "97394ec27546ee773620acd339356a6b0317256e4ea04c373c9d26a4cabfcd8a",
+      "diff_report": "docs\\manuals\\diff_reports\\20260307_194750_v12_spec.diff.txt"
+    },
+    {
+      "version": 13,
+      "version_label": "v1.1",
+      "document": "ops",
+      "timestamp": "2026-03-07 19:47:51",
+      "change_summary": "バージョン管理・改版履歴の動的生成対応、数値整合性修正、packages/ 廃止反映",
+      "changes": {
+        "added": 5,
+        "removed": 3,
+        "sections": 1
+      },
+      "prev_hash": "4c65ae384cbc369f4632ae4035fd9656c017ac1896baaf76c8726c5ec2eafb1e",
+      "new_hash": "4c7aa6179894304f088e171203ccbbdd92460032640b50cb97cf122b578817b4",
+      "diff_report": "docs\\manuals\\diff_reports\\20260307_194751_v13_ops.diff.txt"
+    },
+    {
+      "version": 14,
+      "version_label": "v1.1",
+      "document": "ops",
+      "timestamp": "2026-03-07 20:16:30",
+      "change_summary": "自動再生成",
+      "changes": {
+        "added": 2,
+        "removed": 1,
+        "sections": 2
+      },
+      "prev_hash": "7dbf340fb04a0f600c67cf9e296588227ca697ae78ca7e54265ace0ea8235637",
+      "new_hash": "259b7e9ee04e84fc3ea96ea826b0545d85669d2ab6cdefcdebc7b2cb0ae702a3",
+      "diff_report": "docs\\manuals\\diff_reports\\20260307_201630_v14_ops.diff.txt"
+    },
+    {
+      "version": 15,
+      "version_label": "v1.1",
+      "document": "ops",
+      "timestamp": "2026-03-07 20:24:12",
+      "change_summary": "自動再生成",
+      "changes": {
+        "added": 2,
+        "removed": 1,
+        "sections": 2
+      },
+      "prev_hash": "6a9a7837bc4491ef1b904007a5a2e416775e92a93f96c1a34e6e8969dd5f67b4",
+      "new_hash": "00eb0a5ddbe174d64eb39112efa6466712eb75ce1f518c25575f9ed20c7a6237",
+      "diff_report": "docs\\manuals\\diff_reports\\20260307_202412_v15_ops.diff.txt"
+    },
+    {
+      "version": 16,
+      "version_label": "v1.1",
+      "document": "ops",
+      "timestamp": "2026-03-07 20:37:01",
+      "change_summary": "自動再生成",
+      "changes": {
+        "added": 1,
+        "removed": 1,
+        "sections": 1
+      },
+      "prev_hash": "00eb0a5ddbe174d64eb39112efa6466712eb75ce1f518c25575f9ed20c7a6237",
+      "new_hash": "02be21946aa9a370802e8f2e2d94fa71811daf49fcb46d446f0751c0812f0007",
+      "diff_report": "docs\\manuals\\diff_reports\\20260307_203701_v16_ops.diff.txt"
+    }
+  ],
+  "last_updated": "2026-03-07 20:37:01",
+  "revision_history": {
+    "spec": [
+      {
+        "version_label": "v1.0",
+        "date": "2026-03-02",
+        "summary": "初版作成",
+        "approved_by": "TORA"
+      },
+      {
+        "version_label": "v1.1",
+        "date": "2026-03-07",
+        "summary": "バージョン管理・改版履歴の動的生成対応、数値整合性修正、packages/ 廃止反映",
+        "approved_by": "TORA"
+      }
+    ],
+    "ops": [
+      {
+        "version_label": "v1.0",
+        "date": "2026-03-02",
+        "summary": "初版作成",
+        "approved_by": "TORA"
+      },
+      {
+        "version_label": "v1.1",
+        "date": "2026-03-07",
+        "summary": "バージョン管理・改版履歴の動的生成対応、数値整合性修正、packages/ 廃止反映",
+        "approved_by": "TORA"
+      }
+    ]
+  }
+}
