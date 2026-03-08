@@ -8,6 +8,8 @@ Built on ISO 26262, IEC 61508, IEC 60730, Automotive SPICE, and MISRA-C:2012.
 > **Vision**: To preserve and democratize functional safety engineering knowledge
 > before it is lost to the global labor shortage crisis.
 
+[日本語版は下にあります / Japanese version below](#japanese)
+
 ---
 
 ## What is this?
@@ -125,3 +127,133 @@ Not a corporation. Not a startup. Just an engineer who thinks this knowledge
 should not be locked behind expensive consulting fees.
 
 If you improve it -- share it back.
+
+---
+
+<a id="japanese"></a>
+
+# 日本語 / Japanese
+
+AI を活用した機能安全開発のためのプロセスフレームワーク＆ナレッジツールキット。
+ISO 26262、IEC 61508、IEC 60730、Automotive SPICE、MISRA-C:2012 に対応。
+
+> **ビジョン**: 世界的な人材不足で失われつつある機能安全エンジニアリングの知識を、
+> 保存し、民主化すること。
+
+---
+
+## これは何？
+
+TORASAN は以下の集合体です:
+
+- **41 スキル** (`.claude/skills/`) -- 機能安全、FMEA、HARA、SRS 生成、テスト設計、SPICE 評価などのドメイン知識を構造化プロンプトとしてエンコードした Claude Code 用スキル
+- **22 ナレッジモジュール** (`.claude/knowledge/`) -- ISO 26262、IEC 60730、MISRA-C、Automotive SPICE、安全診断、BLDC モーター制御をカバーするリファレンス資料
+- **プロセス定義** (`PROCESS.md`) -- Automotive SPICE プロセス領域 (MAN.3, SYS.1-5, SWE.1-6, SUP.1/8/9/10) にマッピングした完全な V モデルプロセス
+- **動作する実例** -- 安全要求、アーキテクチャ、ソースコード、ユニットテスト、FMEA、トレーサビリティ、SPICE 記録を備えた BLDC モーターコントローラ (IEC 60730 Class B)
+
+これは製品ではありません。プロセスツールキットです。製品はあなたが持ち込む。TORASAN は安全エンジニアリングの構造を提供します。
+
+## 誰のため？
+
+- ISO 26262 / IEC 61508 / IEC 60730 に取り組む組み込み安全エンジニア
+- 「安全担当」が一人しかいない中小サプライヤーのエンジニア
+- 安全重要システムの AI 支援開発を探求している人
+- 構造化されたプロセス記録が欲しい Automotive SPICE 実践者
+
+## クイックスタート
+
+1. このリポをクローン
+2. [Claude Code](https://docs.anthropic.com/en/docs/claude-code) をインストール
+3. 共有スキルをグローバル設定にコピー:
+   ```bash
+   ./install.sh
+   ```
+4. プロジェクトを開いてスキルを実行:
+   ```
+   /session start
+   /execute-phase PH-01
+   ```
+
+## リポジトリ構成
+
+```
+TORASAN/
+├── .claude/skills/       41 スキル (汎用 14 + ドメイン 27)
+├── .claude/knowledge/    22 ナレッジモジュール
+├── PROCESS.md            V モデルプロセス定義 (ISO 26262 + SPICE)
+├── project.json          プロジェクト設定 (Single Source of Truth)
+├── docs/                 安全計画, HARA, FSC, SRS, テスト仕様, ...
+├── src/                  BLDC モーターコントローラ (C99, MISRA-C 準拠)
+├── test/                 ユニット / 統合 / 適格性テスト (Unity)
+├── process_records/      SPICE プロセスエビデンス (18 プロセス)
+├── scripts/              自動化 (ドキュメント生成, SPICE 改善, WSL ブリッジ)
+├── templates/            プロジェクトテンプレート
+├── platforms/            MCU プラットフォーム定義
+└── install.sh            共有スキルを ~/.claude/ にデプロイ
+```
+
+## スキル一覧
+
+| カテゴリ | 数 | 例 |
+|----------|----|----|
+| 安全分析 | 7 | safety-concept, fmea, safety-diag, safety-verify, srs-generate |
+| 開発 | 6 | sw-design, system-design, driver-gen, mcu-config, motor-control |
+| テスト | 4 | test-design, test-coverage, systest-design, static-analysis |
+| プロセス | 6 | execute-phase, assess-spice, trace, validate, update-record |
+| 管理 | 8 | session, health-check, skill-manage, skill-evolve, repo-manage |
+| ドキュメント | 4 | generate-docs, md2pptx, ingest, manage-tbd |
+| プラットフォーム | 6 | platform-info, env-check, config-audit, worktree-cleanup |
+
+## 動作する実例
+
+同梱の BLDC モーターコントローラは、IEC 60730 Class B の完全な開発を実演しています:
+
+- 15 フェーズの V モデル実行 (PH-01 〜 PH-15)
+- 安全目標、HARA、FMEA、故障木解析
+- ソフトウェア安全要求 (SR-001 〜 SR-018)
+- 安全監視・フェイルセーフ・診断マネージャを備えたアーキテクチャ
+- ユニット + 統合 + 適格性テスト
+- トレーサビリティマトリクス
+- 14/16 プロセスで SPICE Level 2 達成
+
+## AI 支援開発
+
+このフレームワーク全体が Claude Code (Anthropic) で開発されました。
+それこそがポイントです。安全エンジニアリングの知識は AI スキルとしてエンコードし、
+プロジェクト横断で再利用できます。
+
+すべてのスキルは一貫した構造に従います:
+- 前提条件とエラーハンドリング
+- ステップバイステップの実行手順
+- 出力フォーマット仕様
+- project.json とプロセス記録への相互参照
+
+## ライセンス
+
+GPLv3。[LICENSE](LICENSE) を参照。
+
+持っていけ。使え。改善しろ。共有しろ。
+
+## 免責事項
+
+[DISCLAIMER.md](DISCLAIMER.md) を参照。TORASAN は製品を認証しません。
+すべての安全判断はあなたの責任です。
+
+## コントリビュート
+
+[CONTRIBUTING.md](CONTRIBUTING.md) を参照。
+
+初めての貢献に最適:
+- IEC 62304 (医療機器) の安全スキル追加
+- EN ISO 13849-1 (機械) の安全パターン追加
+- README のドイツ語 / 韓国語 / 中国語翻訳
+- STM32 HAL プラットフォーム定義の追加
+- あなたの分野の FMEA テンプレート改善
+
+## About
+
+機能安全の経験を持つ日本の組み込みシステムエンジニアが作りました。
+企業じゃない。スタートアップでもない。この知識が高額なコンサルティング費用の
+裏に閉じ込められるべきではないと考える、ただのエンジニア。
+
+改善したら――共有してくれ。
