@@ -18,6 +18,7 @@ Desktop.ini
 .claude/*
 !.claude/skills/
 !.claude/knowledge/
+!.claude/agents/
 
 # Editor
 .vscode/
